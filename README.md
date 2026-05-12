@@ -2,8 +2,6 @@
 
 A project-driven curriculum for a senior network engineer transitioning into Solution Engineering / Technical Pre-Sales roles that require Python, REST APIs, Azure, Ansible, and Cloud Automation skills.
 
-**Built by doing, not by watching.**
-
 ---
 
 ## About Me
@@ -11,17 +9,15 @@ A project-driven curriculum for a senior network engineer transitioning into Sol
 - 12 years at Cisco: 8 years as Network Consulting Engineer, 4 years as Technical Marketing Engineer
 - Deep expertise in SD-Access, BGP EVPN VXLAN, Catalyst Center, ISE, SD-WAN
 - Familiar with YANG/NETCONF/RESTCONF concepts but no hands-on automation experience
-- Complete beginner in Python and automation
 - Using Cursor AI to help write and understand code
 - Lab access: CML, Catalyst Center, Cat9300/9500, ISE
-- Available time: 20-30 minutes per day, 4 days per week
 - Learning style: build projects, not watch tutorials
 
 ## Career Target
 
 **Role:** Solution Engineer / Technical Pre-Sales Engineer at a cloud or networking company (Microsoft, AWS, or similar)
 
-**Required skills:** Python, REST APIs, Ansible, Azure, CI/CD, Network Automation, Cloud Integration, AI/ML awareness
+**Required skills:** Python, REST APIs, Terraform, Azure, AWS, Ansible, CI/CD, Docker, Network Automation, Cloud Integration, AI/ML awareness
 
 **Proof of competence:** A GitHub profile with real projects that demonstrate hands-on skills to hiring managers
 
