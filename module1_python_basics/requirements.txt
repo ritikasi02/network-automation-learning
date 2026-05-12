@@ -1,0 +1,38 @@
+# Module 1: Python Fundamentals
+# No external dependencies required - uses only Python standard library!
+#
+# This module intentionally uses only built-in Python modules to focus on
+# fundamental Python skills without external dependencies.
+#
+# Standard library modules used:
+# - re (regular expressions)
+# - json (JSON encoding/decoding)
+# - csv (CSV file handling)
+# - logging (application logging)
+# - datetime (date and time handling)
+# - os (operating system interface)
+# - typing (type hints)
+
+# Optional: Development tools (not required for core functionality)
+# Uncomment if you want to use these tools:
+
+# ipython>=8.0.0          # Enhanced Python interactive shell
+# pytest>=7.0.0           # Testing framework
+# black>=23.0.0           # Code formatter
+# pylint>=2.15.0          # Code linter
+# mypy>=1.0.0             # Static type checker
+
+# Note: You can install the optional tools with:
+# pip install ipython pytest black pylint mypy
+
+# For future modules, we'll add:
+# Module 2: netmiko, paramiko, textfsm
+# Module 3: requests, flask
+# Module 4: dnacentersdk
+# Module 5: ncclient
+# Module 6: ansible
+# And more...
+
+
+
+

@@ -1,0 +1,224 @@
+# Module 1: Python Basics - Simple 2-Router Topology
+# This topology provides a basic lab environment for learning Python fundamentals
+
+lab:
+  title: "Module 1 - Python Basics Lab"
+  description: "Simple 2-router topology for practicing Python automation basics"
+  notes: |
+    This lab is designed for Module 1 of the Network Automation curriculum.
+    It includes two routers with basic configuration for practicing:
+    - Config file parsing
+    - Data structure manipulation
+    - Inventory management
+    - Report generation
+
+nodes:
+  - id: router1
+    label: R1
+    node_definition: iosv
+    x: -200
+    y: 0
+    configuration: |
+      hostname R1
+      !
+      interface GigabitEthernet0/0
+       description WAN Link to R2
+       ip address 10.1.1.1 255.255.255.0
+       no shutdown
+      !
+      interface GigabitEthernet0/1
+       description LAN Connection
+       ip address 192.168.1.1 255.255.255.0
+       no shutdown
+      !
+      interface Loopback0
+       description Management Interface
+       ip address 1.1.1.1 255.255.255.255
+      !
+      router ospf 1
+       network 10.1.1.0 0.0.0.255 area 0
+       network 192.168.1.0 0.0.0.255 area 0
+       network 1.1.1.1 0.0.0.0 area 0
+      !
+      ip domain-name lab.local
+      ip ssh version 2
+      !
+      line vty 0 4
+       login local
+       transport input ssh
+      !
+      username admin privilege 15 secret cisco123
+      enable secret cisco123
+      !
+      logging buffered 10000
+      !
+      banner motd ^
+      ************************************
+      * Router R1 - Module 1 Lab Device *
+      * Unauthorized access prohibited   *
+      ************************************
+      ^
+      !
+      end
+
+  - id: router2
+    label: R2
+    node_definition: iosv
+    x: 200
+    y: 0
+    configuration: |
+      hostname R2
+      !
+      interface GigabitEthernet0/0
+       description WAN Link to R1
+       ip address 10.1.1.2 255.255.255.0
+       no shutdown
+      !
+      interface GigabitEthernet0/1
+       description LAN Connection
+       ip address 192.168.2.1 255.255.255.0
+       no shutdown
+      !
+      interface Loopback0
+       description Management Interface
+       ip address 2.2.2.2 255.255.255.255
+      !
+      router ospf 1
+       network 10.1.1.0 0.0.0.255 area 0
+       network 192.168.2.0 0.0.0.255 area 0
+       network 2.2.2.2 0.0.0.0 area 0
+      !
+      ip domain-name lab.local
+      ip ssh version 2
+      !
+      line vty 0 4
+       login local
+       transport input ssh
+      !
+      username admin privilege 15 secret cisco123
+      enable secret cisco123
+      !
+      logging buffered 10000
+      !
+      banner motd ^
+      ************************************
+      * Router R2 - Module 1 Lab Device *
+      * Unauthorized access prohibited   *
+      ************************************
+      ^
+      !
+      end
+
+links:
+  - id: link1
+    node1: router1
+    node2: router2
+    interface1: GigabitEthernet0/0
+    interface2: GigabitEthernet0/0
+
+# Lab Instructions
+instructions: |
+  
+  ## Lab Setup Instructions
+  
+  1. **Import this topology into CML**
+     - You can use the CML web interface or API
+     - Alternatively, use the provided Python script
+  
+  2. **Start the lab**
+     - Boot both routers (this may take 3-5 minutes)
+     - Wait for devices to reach BOOTED state
+  
+  3. **Verify connectivity**
+     - R1 should be able to ping R2: ping 10.1.1.2
+     - R2 should be able to ping R1: ping 10.1.1.1
+     - OSPF should be established between routers
+  
+  4. **Access devices**
+     - Username: admin
+     - Password: cisco123
+     - Enable password: cisco123
+  
+  5. **Export configurations**
+     - Copy the running-config from each router
+     - Save to the sample_configs/ directory
+     - Use these configs for your Python exercises
+  
+  ## Using the Topology
+  
+  For Module 1 exercises, you'll:
+  - Parse the router configurations
+  - Extract interface information
+  - Build an inventory database
+  - Generate reports in various formats
+  - Practice with real Cisco IOS output
+  
+  ## Expected Learning Outcomes
+  
+  By working with this topology, you'll learn to:
+  - Read and parse Cisco configuration files
+  - Extract structured data from unstructured text
+  - Work with Python data structures (lists, dicts, sets)
+  - Handle file I/O operations
+  - Generate reports in multiple formats (CSV, JSON, text)
+  
+  ## Troubleshooting
+  
+  If OSPF is not working:
+  - Check that interfaces are up: show ip interface brief
+  - Verify OSPF config: show ip ospf neighbor
+  - Check IP addressing matches the configuration
+  
+  If you can't access via SSH:
+  - Verify SSH is enabled: show ip ssh
+  - Check crypto keys exist: show crypto key mypubkey rsa
+  - If needed, regenerate keys: crypto key generate rsa modulus 2048
+
+# Topology Metadata
+metadata:
+  version: "1.0"
+  author: "Network Automation Curriculum"
+  created_for: "Module 1: Python Fundamentals"
+  device_count: 2
+  estimated_boot_time: "5 minutes"
+  required_cml_version: "2.4+"
+  
+# Resource Requirements
+resources:
+  cpu_per_node: 1
+  ram_per_node_mb: 512
+  total_cpu: 2
+  total_ram_mb: 1024
+  estimated_runtime: "Low - suitable for laptops"
+
+# Alternative: Manual Creation Steps
+manual_creation_steps: |
+  
+  If you prefer to create the topology manually in CML:
+  
+  1. Create new lab named "Module 1 - Python Basics Lab"
+  
+  2. Add two IOSv nodes:
+     - Node 1: Label = R1, position = (-200, 0)
+     - Node 2: Label = R2, position = (200, 0)
+  
+  3. Connect nodes:
+     - R1 Gi0/0 <--> R2 Gi0/0
+  
+  4. Configure R1: (paste configuration from nodes section above)
+  
+  5. Configure R2: (paste configuration from nodes section above)
+  
+  6. Start the lab and wait for convergence
+  
+  7. Verify:
+     - show ip interface brief
+     - show ip ospf neighbor
+     - ping tests
+
+# Python Script to Deploy (see topology_deployer.py)
+deployment_script: "topology_deployer.py"
+
+
+
+
