@@ -14,7 +14,6 @@ A project-driven curriculum for a senior network engineer transitioning into Sol
 - Learning style: build projects, not watch tutorials
 
 ## Career Target
-
 **Role:** Solution Engineer / Technical Pre-Sales Engineer at a cloud or networking company (Microsoft, AWS, or similar)
 
 **Required skills:** Python, REST APIs, Terraform, Azure, AWS, Ansible, CI/CD, Docker, Network Automation, Cloud Integration, AI/ML awareness
@@ -911,6 +910,63 @@ This table maps each module to the skills that appear in real job descriptions f
 ### How to Use This in Interviews
 
 When a job description says "experience with REST APIs and Python scripting," you can point to Modules 1, 3, 4, and your GitHub projects. When it says "cloud automation and Azure," point to Modules 3.5 and 4.5. When it says "Terraform" or "Infrastructure as Code," point to Modules 3.5 and 6.5. This map helps you connect your learning directly to job requirements.
+
+---
+
+## CCNP Automation Blueprint Alignment (350-901 AUTOCOR v2.0)
+
+This curriculum also aligns with the Cisco CCNP/CCIE Automation core exam (350-901 AUTOCOR v2.0 — "Designing, Deploying and Managing Network Automation Systems"). The old DEVCOR exam has been retired. AUTOCOR v2.0 has 4 domains focused on network automation, IaC, operations, and AI.
+
+### Blueprint-to-Curriculum Map
+
+| AUTOCOR Domain | Weight | Where Covered | Gaps to Fill |
+|----------------|--------|---------------|--------------|
+| **1.0 Network Automation** | 30% | | |
+| 1.1 Ansible (VLANs, OSPF, ACLs) | | Module 6 | Ensure playbooks cover VLANs, OSPF, ACLs specifically |
+| 1.2 Terraform (VLANs, OSPF, ACLs) | | Module 6.5 | Add IOS XE provider examples alongside AzureRM |
+| 1.3 RESTCONF with YANG models | | Module 5 | Ensure VLANs, OSPF, ACLs via RESTCONF |
+| 1.4 Python automation | | Module 1, all modules | Well covered |
+| 1.5 Select automation approach | | Modules 6 vs 6.5 | Add comparison exercise: when Ansible vs Terraform vs Python |
+| 1.6 REST APIs (pagination, auth, rate limiting) | | Module 3, 4 | Well covered |
+| **2.0 Infrastructure as Code** | 30% | | |
+| 2.1 Advanced Git (squash, cherry-pick, reset, revert) | | Module 9, GitHub Workflow | **Add exercises for advanced Git ops** |
+| 2.2 CML automation via REST API | | Module 3 (CML API) | **Strengthen: automate CML lab topology with PyCML** |
+| 2.2 Docker Compose | | Module 7.5 | Covered |
+| 2.2 Source of truth (NetBox/Nautobot) | | Not covered | **GAP: Add awareness in Module 8** |
+| 2.2 YANG-to-YAML/JSON payloads | | Module 5 | Add exercise generating payloads from YANG models |
+| 2.3 GitLab CE CI/CD pipeline | | Module 9 (GitHub Actions) | **GAP: Note GitLab CE as exam alternative** |
+| **3.0 Operations** | 20% | | |
+| 3.1 Model-driven telemetry | | Not covered | **GAP: Add to Module 5** |
+| 3.2 Logging strategy (syslog, webhooks) | | Module 1 | Well covered |
+| 3.3 Diagnose problems from logs | | Module 1, 7 | Well covered |
+| 3.4 pyATS change validation | | Module 7 | **Strengthen pyATS CLI tools coverage** |
+| 3.5 CA-signed TLS certificates | | Not covered | **GAP: Add brief section in Module 9** |
+| 3.6 Secure coding (input validation, secrets) | | Module 4.5 | Covered |
+| **4.0 AI in Automation** | 20% | | |
+| 4.1 AI-assisted code: benefits and risks | | Not covered | **GAP: Add to Module 4.5** |
+| 4.2 Security risks in AI automation | | Not covered | **GAP: Add to Module 4.5** |
+| 4.3 MCP server with Python FastMCP | | Not covered | **GAP: Add to Module 4.5** |
+| 4.4 Conversational LLM agent for automation | | Module 4.5 (Azure OpenAI) | **Expand: build a proper LLM agent** |
+| 4.5 Evaluate AI recommendation accuracy | | Not covered | **GAP: Add to Module 4.5** |
+
+### How Gaps Will Be Closed
+
+The gaps above do NOT require new modules. They will be folded into existing modules as additional exercises or sections:
+
+| Gap | Where to Add | Effort |
+|-----|-------------|--------|
+| MCP server with FastMCP | Module 4.5, Week 7-8 (add a FastMCP exercise) | 2-3 sessions |
+| LLM conversational agent | Module 4.5, Week 7-8 (expand AI project) | 2-3 sessions |
+| AI risks and evaluation | Module 4.5, Week 7 (add a theory + exercise section) | 1-2 sessions |
+| Model-driven telemetry | Module 5, add Day 3-4 exercise (gRPC dial-out) | 1-2 sessions |
+| Advanced Git ops | Module 9, Week 1 (squash merge, cherry-pick, reset lab) | 1 session |
+| GitLab CE CI/CD | Module 9, Week 2 (note alongside GitHub Actions) | 1 session |
+| Source of truth (NetBox) | Module 8, mention as inventory source | 1 session |
+| CML automation with PyCML | Module 3, Week 1 (CML API is already the project) | Already covered, strengthen |
+| pyATS CLI tools | Module 7, Weeks 2-3 (expand from mention to hands-on) | 1-2 sessions |
+| TLS certificates | Module 9, brief section on cert management | 1 session |
+
+**Total additional effort:** ~12-15 sessions (~3-4 weeks) spread across existing modules. No timeline increase needed — these fit within existing module durations.
 
 ---
 

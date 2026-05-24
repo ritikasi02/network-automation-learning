@@ -1,0 +1,92 @@
+---
+description: Align all teaching, code, and projects with Cisco CCNP/CCIE Automation AUTOCOR 350-901 v2.0 blueprint
+alwaysApply: true
+---
+
+# CCNP/CCIE Automation — AUTOCOR 350-901 v2.0 Blueprint Alignment
+
+The learner is preparing for both cloud SE interviews AND the Cisco CCNP Automation certification (core exam: 350-901 AUTOCOR v2.0). When helping with any module, exercise, or project, actively reinforce exam topics whenever the opportunity arises naturally.
+
+NOTE: The old DEVCOR v1.1 exam has been retired. The current exam is AUTOCOR v2.0 — "Designing, Deploying and Managing Network Automation Systems." Do NOT reference DEVCOR topics that were dropped (Webex Teams, Firepower FDM, UCS, Intersight, AppDynamics, NSO, Kubernetes, OAuth2 three-legged flow, 12-factor app, database types, architectural patterns).
+
+## AUTOCOR v2.0 Blueprint (4 Domains)
+
+### 1.0 Network Automation (30%)
+- 1.1 Construct automation with **Ansible** (VLANs, OSPF, asset mgmt, interfaces, ACLs)
+- 1.2 Construct automation with **Terraform** (VLANs, OSPF, asset mgmt, interfaces, ACLs)
+- 1.3 Construct automation with **RESTCONF** (RFC 8040) given a YANG model (VLANs, OSPF, interfaces, ACLs)
+- 1.4 Construct automation with **Python** (VLANs, OSPF, asset mgmt, interfaces, ACLs)
+- 1.5 **Select** the right automation approach (IaC framework vs low-code/no-code vs custom app)
+- 1.6 Consume **REST APIs** with pagination, complex auth workflows, rate limiting, error handling, persistent auth
+
+### 2.0 Infrastructure as Code (30%)
+- 2.1 Advanced **Git** operations:
+  - 2.1.a Merge (including squash and conflict resolution)
+  - 2.1.b git cherry-pick
+  - 2.1.c git reset
+  - 2.1.d git checkout
+  - 2.1.e git revert
+- 2.2 Additional IaC topics: **CML automation** (REST API, PyCML), **Docker Compose**, **source of truth** (NetBox/Nautobot), YANG-to-YAML/JSON payload generation
+- 2.3 Construct a **GitLab CE CI/CD pipeline** with stages:
+  - 2.3.a build
+  - 2.3.b prevalidation
+  - 2.3.c deploy
+  - 2.3.d post-validation
+
+### 3.0 Operations (20%)
+- 3.1 Describe architectural components of **model-driven telemetry** (gRPC dial-in/dial-out, data types, cadence)
+- 3.2 Implement a **logging strategy** (syslog, webhooks)
+- 3.3 **Diagnose** problems given logs and output
+- 3.4 Implement **change validation** with **pyATS** CLI tools
+- 3.5 Describe obtaining and deploying **CA-signed TLS certificates**
+- 3.6 Implement **secure coding**: input validation, authentication, secret management
+
+### 4.0 AI in Automation (20%)
+- 4.1 Describe benefits and risks of **AI-assisted code development** (data privacy, IP ownership, code validation)
+- 4.2 Interpret **security risks** in AI-based automation (prompt injection, RAG poisoning, over-permissive tools)
+- 4.3 Construct an **MCP server** with **Python FastMCP** to provide network info to an AI agent
+- 4.4 Construct a **conversational agent** using **LLMs** for network automation
+- 4.5 Evaluate **accuracy** of AI recommendations on automation solutions
+
+## How to Apply This Rule
+
+- When teaching Python or Ansible or Terraform, frame exercises around the specific config tasks from Domain 1 (VLANs, OSPF, interfaces, ACLs)
+- When working on REST APIs (Module 3, 4), demonstrate pagination, error handling, rate limiting, and persistent auth per Domain 1.6
+- When covering Git (GitHub Workflow), teach advanced operations from Domain 2.1 (squash merge, cherry-pick, reset, revert)
+- When covering CI/CD (Module 9), note the exam specifies GitLab CE, not GitHub Actions — mention the difference and suggest the learner set up a free GitLab CE instance alongside GitHub
+- When covering testing (Module 7), emphasize pyATS CLI tools specifically per Domain 3.4
+- When covering NETCONF/YANG (Module 5), connect to model-driven telemetry per Domain 3.1
+- When covering Azure AI (Module 4.5), connect to Domain 4 (AI in Automation) — expand to cover MCP servers, FastMCP, LLM agents, and AI risk assessment
+- Do NOT turn every session into exam prep — the primary goal is building projects. Weave blueprint topics in naturally.
+- When a gap topic comes up, mention the AUTOCOR domain and suggest where to learn more.
+
+## Curriculum-to-Blueprint Quick Map
+
+| Module | Primary AUTOCOR Domains |
+|--------|------------------------|
+| M1 Python | 1.4 (Python automation), 3.2 (logging), 3.3 (diagnostics) |
+| M2 SSH | Background knowledge (legacy approach) |
+| M3 REST APIs | 1.6 (REST APIs, pagination, auth, error handling) |
+| M3.5 Azure Taster | 2.0 (IaC concepts via Bicep) |
+| M4 Controller APIs | 1.6 (REST APIs), 1.3 (RESTCONF awareness) |
+| M4.5 Azure Deep Dive | 4.1-4.5 (AI in Automation), 3.6 (secure coding) |
+| M5 NETCONF/YANG | 1.3 (RESTCONF), 3.1 (model-driven telemetry) |
+| M6 Ansible | 1.1 (Ansible automation), 1.5 (approach selection) |
+| M6.5 Terraform | 1.2 (Terraform automation), 1.5 (approach selection) |
+| M7 Testing | 3.4 (pyATS change validation), 3.3 (log diagnosis) |
+| M7.5 Docker | 2.0 (Docker Compose) |
+| M9 CI/CD | 2.1 (advanced Git), 2.3 (CI/CD pipeline) |
+| M10 Capstone | All domains combined |
+
+## Key Gaps to Address
+
+These AUTOCOR topics are NOT currently in the curriculum and need supplementary coverage:
+1. **MCP servers with FastMCP** (Domain 4.3) — add to Module 4.5 or create a mini-exercise
+2. **LLM conversational agent for network automation** (Domain 4.4) — add to Module 4.5
+3. **AI risk assessment** (Domain 4.1, 4.2, 4.5) — add to Module 4.5
+4. **GitLab CE CI/CD** (Domain 2.3) — note alongside GitHub Actions in Module 9
+5. **CML REST API automation** (Domain 2.0) — already have CML access, add to Module 3
+6. **Source of truth (NetBox/Nautobot)** (Domain 2.0) — add awareness to Module 8
+7. **Model-driven telemetry** (Domain 3.1) — add to Module 5
+8. **pyATS CLI tools for change validation** (Domain 3.4) — strengthen in Module 7
+9. **CA-signed TLS certificates** (Domain 3.5) — add to Module 9 or operations appendix
