@@ -13,8 +13,6 @@ A project-driven curriculum for a senior network engineer transitioning into Sol
 - Lab access: CML, Catalyst Center, Cat9300/9500, ISE
 - Learning style: build projects, not watch tutorials
 
-## Career Target
-**Role:** Solution Engineer / Technical Pre-Sales Engineer at a cloud or networking company (Microsoft, AWS, or similar)
 
 **Required skills:** Python, REST APIs, Terraform, Azure, AWS, Ansible, CI/CD, Docker, Network Automation, Cloud Integration, AI/ML awareness
 
