@@ -18,6 +18,7 @@
 #                if y[j].strip() == "!":
 #                    break
 
+import os
 
 def read_confg(filepath):
     with open(filepath, "r") as f:
@@ -43,11 +44,17 @@ def get_interfaces(lines):
     return interface
 
 if __name__ == "__main__":
-    lines =read_confg("sample_configs/R1_config.txt")
-    hostname = get_hostname(lines)
-    print(hostname)
-    interface = get_interfaces(lines)
-    print(interface)
+    folder = "sample_configs"
+    config_files = os.listdir(folder)
+    for filename in config_files:
+        filepath = os.path.join(folder, filename)
+        lines =read_confg(filepath)
+        hostname = get_hostname(lines)
+        interface = get_interfaces(lines)
+        print(hostname)
+        for intf in interface:
+            print(f" {intf['name']} {intf['ip']} {intf['mask']}")
+
 
 
          
