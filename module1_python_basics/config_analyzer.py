@@ -30,12 +30,13 @@ def get_hostname(lines):
     for line in lines:
         if line.strip().startswith("hostname"):
             return line.split()[1]
+    return "unknown"
     
 def get_interfaces(lines):
     interface = []
     for i, line in enumerate(lines):
         if line.strip().startswith("interface"):
-            for j in range(i+1, i+10):
+            for j in range(i+1, min(i+10, len(lines))):
                 if "ip address" in lines[j] and "no ip address" not in lines[j]:
                     ip = lines[j].strip().split()[2]
                     mask = lines[j].strip().split()[3]
@@ -49,7 +50,7 @@ def get_ospf(lines):
     ospf = []
     for i, line in enumerate(lines):
         if line.strip().startswith("router ospf"):
-            for j in range(i+1, i+10):
+            for j in range(i+1, min(i+10, len(lines))):
                 match = re.search(r"network (\S+) (\S+) area (\d+)", lines[j])
                 if match:
                     network_ip = match.group(1)
