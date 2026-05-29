@@ -20,6 +20,7 @@
 
 import os
 import re
+import json
 
 
 def read_confg(filepath):
@@ -29,7 +30,7 @@ def read_confg(filepath):
 def get_hostname(lines):
     for line in lines:
         if line.strip().startswith("hostname"):
-            return line.split()[1]
+            return [{"hostname": line.split()[1]}]
     return "unknown"
     
 def get_interfaces(lines):
@@ -62,9 +63,8 @@ def get_ospf(lines):
     return ospf
 
 
-
-
-if __name__ == "__main__":
+def build_data():    
+    data = []
     folder = "sample_configs"
     config_files = sorted(os.listdir(folder))
     for filename in config_files:
@@ -72,13 +72,20 @@ if __name__ == "__main__":
         lines =read_confg(filepath)
         hostname = get_hostname(lines)
         interface = get_interfaces(lines)
-        print(hostname)
-        for intf in interface:
-            print(f" {intf['name']} {intf['ip']} {intf['mask']}")
+#      print(hostname)
+#       for intf in interface:
+#           print(f" {intf['name']} {intf['ip']} {intf['mask']}")
         ospf = get_ospf(lines)
-        for c in ospf:
-            print(f" network {c['network']} {c['wildcard']} area {c['area']}" )
+        data.append({"hostname": hostname, "interfaces": interface, "ospf": ospf})
+#       for c in ospf:
+#          print(f" network {c['network']} {c['wildcard']} area {c['area']}" )
+    return data
 
 
+if __name__ == "__main__":
+    data = build_data()
+    with open("output.json", "w") as f:
+        json.dump(data, f, indent=2)
+    
 
          
