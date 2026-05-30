@@ -14,7 +14,7 @@ A project-driven curriculum for a senior network engineer transitioning into Sol
 - Learning style: build projects, not watch tutorials
 
 
-**Required skills:** Python, REST APIs, Terraform, Azure, AWS, Ansible, CI/CD, Docker, Network Automation, Cloud Integration, AI/ML awareness
+**Required skills:** Python, REST APIs, Terraform, AWS, Azure, Ansible, CI/CD, Docker, Network Automation, Cloud Integration, AI/ML awareness
 
 **Proof of competence:** A GitHub profile with real projects that demonstrate hands-on skills to hiring managers
 
@@ -27,13 +27,13 @@ A project-driven curriculum for a senior network engineer transitioning into Sol
 | 1 | Python Fundamentals | 4-5 weeks | Network Config Analyzer | Python, file I/O, regex, data structures |
 | 2 | SSH Automation (Light Intro) | 1 week | Device Backup Script | Netmiko, SSH basics |
 | 3 | REST API Basics | 3-4 weeks | Network API Dashboard | HTTP, requests, JSON, API design |
-| 3.5 | Azure Taster | 2 weeks | Hello-Azure (Function + Bicep deploy) | Azure CLI, Azure Functions, Bicep basics |
+| 3.5 | AWS Taster | 2 weeks | Hello-AWS (Lambda + CloudFormation deploy) | AWS CLI, Lambda, CloudFormation, IAM basics |
 | 4 | Controller APIs | 4-5 weeks | Catalyst Center Automation Toolkit | Catalyst Center API, Meraki API, SDKs |
-| 4.5 | Azure Cloud Automation (Deep Dive) | 6-8 weeks | Azure Network Automation Platform | Azure Functions, Azure REST APIs, AI Services |
+| 4.5 | AWS Cloud Automation (Deep Dive) | 6-8 weeks | AWS Network Automation Platform | Lambda, boto3, AWS REST APIs, Bedrock AI, MCP |
 | 5 | NETCONF/YANG (Compressed) | 1-2 weeks | NETCONF Config Manager | ncclient, YANG models, RESTCONF |
 | 6 | Ansible (Shrunk) | 2 weeks | Ansible Network Mini-Collection | Playbooks, Jinja2, network modules |
 | 6.5 | Terraform + AzureRM | 4-5 weeks | Azure Hub-and-Spoke IaC | Terraform, HCL, AzureRM provider, modules, state |
-| 6.6 | AWS Mini-Module (Optional) | 2-3 weeks | Lambda + boto3 Network Tool | AWS Lambda, boto3, AWS CLI, IAM basics |
+| 6.6 | Azure Mini-Module (Optional) | 2-3 weeks | Azure Function + Bicep Network Tool | Azure Functions, Azure CLI, Bicep basics |
 | 7 | Testing & Validation | 3-4 weeks | Network Test Framework | pytest, pyATS, pre/post validation |
 | 7.5 | Docker Basics | 1 week | Containerize Earlier Project | Docker, Dockerfile, docker-compose basics |
 | 8 | Orchestration | 3-4 weeks | Network Orchestration Engine | Nornir, event-driven automation |
@@ -51,13 +51,13 @@ This is an honest estimate. Some weeks you will move faster, some weeks life hap
 - [ ] **Module 1: Python Fundamentals** - IN PROGRESS (material created, learning not completed)
 - [ ] Module 2: SSH Automation - Not Started
 - [ ] Module 3: REST API Basics - Not Started
-- [ ] Module 3.5: Azure Taster - Not Started
+- [ ] Module 3.5: AWS Taster - Not Started
 - [ ] Module 4: Controller APIs - Not Started
-- [ ] Module 4.5: Azure Cloud Automation (Deep Dive) - Not Started
+- [ ] Module 4.5: AWS Cloud Automation (Deep Dive) - Not Started
 - [ ] Module 5: NETCONF/YANG - Not Started
 - [ ] Module 6: Ansible (Shrunk) - Not Started
 - [ ] Module 6.5: Terraform + AzureRM - Not Started
-- [ ] Module 6.6: AWS Mini-Module (Optional) - Not Started
+- [ ] Module 6.6: Azure Mini-Module (Optional) - Not Started
 - [ ] Module 7: Testing & Validation - Not Started
 - [ ] Module 7.5: Docker Basics - Not Started
 - [ ] Module 8: Orchestration - Not Started
@@ -233,56 +233,59 @@ Python 3.x, requests, Flask, JSON, REST APIs
 
 ---
 
-### Module 3.5: Azure Taster (2 weeks)
+### Module 3.5: AWS Taster (2 weeks)
 
-**Philosophy:** Keep the cloud muscle warm right after learning REST APIs. You just learned how to call APIs — now call one that provisions real cloud infrastructure. This lightweight module gives you early Azure exposure so Module 4.5 is not a cold start. Two weeks, two small deliverables, move on.
+**Philosophy:** Keep the cloud muscle warm right after learning REST APIs, and warm up for the AWS deep dive in Module 4.5 so it is not a cold start. You just learned how to call APIs — now call one that provisions real cloud infrastructure. This lightweight module gives you early AWS exposure (account, IAM, CLI, one serverless function, one IaC template). Two weeks, two small deliverables, move on.
 
-**GitHub Project: Hello-Azure (Function + Bicep deploy)**
+**GitHub Project: Hello-AWS (Lambda + CloudFormation deploy)**
 
-Two small pieces in one repo: (1) an HTTP-triggered Azure Function in Python that returns device info from a JSON file, and (2) a Bicep template that deploys a storage account to Azure. Together they prove you can do serverless compute and declarative IaC on Azure.
+Two small pieces in one repo: (1) an HTTP-triggered AWS Lambda function (Function URL or API Gateway) in Python that returns device info from a JSON file, and (2) a CloudFormation template that deploys an S3 bucket. Together they prove you can do serverless compute and declarative IaC on AWS.
 
 **What you will learn:**
-- Azure free tier account setup and Portal navigation
-- Azure CLI basics (`az login`, `az group create`, `az functionapp create`)
-- Creating and deploying an HTTP-triggered Azure Function in Python
-- Bicep syntax for declaring Azure resources (storage account)
-- Deploying infrastructure with `az deployment group create`
-- The difference between imperative (CLI/SDK) and declarative (Bicep/Terraform) IaC
+- AWS free tier account setup, a billing budget alarm, and Console navigation
+- IAM fundamentals: users, roles, policies, and least privilege (the AWS auth model)
+- AWS CLI basics (`aws configure` with named profiles, `aws s3 ls`, `aws lambda ...`)
+- Creating and deploying an HTTP-triggered Lambda function in Python
+- CloudFormation (YAML) syntax for declaring AWS resources (an S3 bucket)
+- Deploying infrastructure with `aws cloudformation deploy`
+- The difference between imperative (CLI/SDK) and declarative (CloudFormation/Terraform) IaC
 
 **Weekly structure:**
-- Week 1: Azure account setup, Azure CLI, build and deploy HTTP-triggered Function
-- Week 2: Write Bicep template for a storage account, deploy it, write README
+- Week 1: AWS account + budget alarm, create a least-privilege IAM user, configure the CLI, build and deploy an HTTP-triggered Lambda
+- Week 2: Write a CloudFormation template for an S3 bucket, deploy it, write README
+
+**Security note (do this from day one):** Never commit AWS access keys. Use a named CLI profile (or IAM Identity Center / SSO) and grant the IAM user the minimum permissions it needs. This habit carries straight into Module 4.5.
 
 **Time estimate:** 2 weeks (8 sessions)
 
 **What this teaches an interviewer about you:**
-You have hands-on Azure experience and understand both serverless compute and Infrastructure as Code at a basic level. This is an early signal that you are cloud-capable, not just network-capable.
+You have hands-on AWS experience and understand serverless compute, the IAM auth model, and Infrastructure as Code at a basic level. This is an early signal that you are cloud-capable, not just network-capable, and it sets up the deeper AWS work in Module 4.5.
 
 **README template for this project:**
 
 ```markdown
-# Hello-Azure
+# Hello-AWS
 
-A starter Azure project: one HTTP-triggered Azure Function in Python
-and one Bicep-deployed storage account.
+A starter AWS project: one HTTP-triggered Lambda function in Python
+and one CloudFormation-deployed S3 bucket.
 
 ## What It Does
-- Azure Function responds to HTTP requests with device info from JSON
-- Bicep template deploys a storage account to a resource group
+- Lambda responds to HTTP requests with device info from JSON
+- CloudFormation template deploys an S3 bucket
 
 ## Why Two Things?
-Demonstrates both serverless compute (Azure Functions) and declarative
-Infrastructure as Code (Bicep) — the two patterns that dominate cloud
-engineering.
+Demonstrates both serverless compute (Lambda) and declarative
+Infrastructure as Code (CloudFormation) — the two patterns that dominate
+cloud engineering.
 
 ## How to Run
-< Azure CLI commands for Function deploy and Bicep deploy >
+< AWS CLI commands for Lambda deploy and CloudFormation deploy >
 
 ## What I Learned
-< Azure CLI, Functions, Bicep, imperative vs declarative IaC >
+< AWS CLI, IAM least privilege, Lambda, CloudFormation, imperative vs declarative IaC >
 
 ## Technologies
-Python 3.x, Azure Functions, Azure CLI, Bicep
+Python 3.x, AWS Lambda, AWS CLI, CloudFormation, IAM, S3
 ```
 
 ---
@@ -350,84 +353,91 @@ Python 3.x, requests, Catalyst Center API, Meraki API, argparse
 
 ---
 
-### Module 4.5: Azure Cloud Automation - Deep Dive (6-8 weeks)
+### Module 4.5: AWS Cloud Automation - Deep Dive (6-8 weeks)
 
-**Philosophy:** Azure is where your career is heading. This module connects your networking background to cloud automation. You will learn Azure fundamentals, build serverless functions, use Azure REST APIs, integrate Azure with your existing network tools, and get hands-on with Azure AI Services. This is the module that transforms you from a network engineer into a cloud-capable solution engineer.
+**Philosophy:** AWS is where your career is heading. This module connects your networking background to cloud automation. You will learn AWS fundamentals, build serverless functions with Lambda, drive the AWS API with the boto3 SDK, integrate AWS with your existing network tools, and get hands-on with AWS AI (Amazon Bedrock). This is the module that transforms you from a network engineer into a cloud-capable solution engineer. It also carries the AUTOCOR **Domain 4 (AI in Automation)** content — MCP servers with FastMCP, an LLM agent for network automation, and AI risk assessment — plus **Domain 3.6 (secure coding)**.
 
-**Prerequisites:** Complete Modules 1-4. You need Python and REST API skills before starting Azure.
+**Prerequisites:** Complete Modules 1-4 and the AWS Taster (Module 3.5). You need Python, REST API, and basic AWS/IAM skills before starting.
 
 #### Week-by-Week Breakdown
 
-**Week 1-2: Azure Foundation**
-- Create Azure free tier account (includes $200 credit for 30 days + 12 months of free services)
-- Azure Portal navigation and resource groups
-- Azure CLI installation and basic commands
-- Understanding subscriptions, resource groups, and regions
-- Deploy a simple resource (storage account) via CLI and Portal
+**Week 1-2: AWS Foundation**
+- Confirm your AWS free tier account and set a billing budget alarm (cost control first)
+- AWS Console navigation; understand Regions and Availability Zones
+- IAM deep dive: users, groups, roles, policies, instance/Lambda execution roles, least privilege
+- AWS CLI named profiles and temporary credentials; never hardcode access keys (use roles / IAM Identity Center)
+- Core services tour: EC2, VPC, S3, CloudWatch
+- Deploy a resource (S3 bucket or VPC) via CLI and Console
 
-**Week 3-4: Azure Functions**
+**Week 3-4: Serverless with Lambda**
 - What serverless computing is and why it matters
-- Create your first Azure Function (HTTP trigger) in Python
-- Azure Functions Core Tools for local development
-- Timer-triggered functions for scheduled automation
-- Environment variables and application settings for configuration
+- Create your first Lambda (HTTP via Function URL or API Gateway) in Python
+- AWS SAM for local development, packaging, and deployment
+- EventBridge (CloudWatch Events) scheduled rules for timer-based automation
+- Configuration and secrets via environment variables + AWS Secrets Manager / SSM Parameter Store (no hardcoded secrets)
 
-**Week 5-6: Azure REST APIs and Integration**
-- Azure Resource Manager (ARM) REST API basics
-- Authentication with Azure AD (service principals, managed identities)
-- Using the Azure SDK for Python (`azure-mgmt-*` packages)
-- Build automation that manages Azure resources programmatically
-- Connect Azure Functions to Catalyst Center or Meraki API (trigger network actions from cloud events)
+**Week 5-6: AWS SDK (boto3), REST APIs, and Integration**
+- boto3 clients vs resources; sessions, regions, and credential resolution
+- Pagination with paginators, retries with exponential backoff, throttling/rate-limit handling, and idempotency (AUTOCOR 1.6)
+- Authentication with IAM roles and temporary STS credentials instead of long-lived keys
+- Build automation that manages AWS resources programmatically (VPC, EC2, S3)
+- Connect a Lambda to Catalyst Center or Meraki API (trigger network actions from cloud events)
 
-**Week 7-8: Azure AI Services and Final Project**
-- Azure AI Services overview (Cognitive Services, OpenAI Service)
-- Call Azure OpenAI API from Python
-- Build an AI-powered network troubleshooting assistant
-- Final integration project combining Azure + network automation
+**Week 7-8: AWS AI (Bedrock), AI-in-Automation, and Final Project**
+- Amazon Bedrock overview (managed foundation models) and `bedrock-runtime` from boto3
+- Build an AI-powered network troubleshooting assistant grounded in your own docs (RAG)
+- Build a **conversational LLM agent** for network automation (AUTOCOR 4.4)
+- Build an **MCP server with Python FastMCP** that exposes read-only network info as tools to an AI agent (AUTOCOR 4.3)
+- **AI risk assessment** (AUTOCOR 4.1, 4.2, 4.5): benefits/risks of AI-assisted code (data privacy, IP ownership, code validation), prompt injection, RAG poisoning, over-permissive tools, and how to evaluate the accuracy of AI recommendations
+- Final integration project combining AWS + network automation
 
-**GitHub Project 1: Azure-Triggered Network Compliance Monitor**
+> **Why AI lives here:** AUTOCOR Domain 4 is 20% of the exam and is cloud-agnostic (it is really Python + an LLM API + an MCP server). Hosting it on Bedrock keeps it inside your primary cloud track. If you prefer Azure OpenAI for the LLM calls, the same code patterns apply — swap the client.
 
-An Azure Function that runs on a schedule (timer trigger), calls Catalyst Center or Meraki API to check device compliance, stores results in Azure Table Storage, and sends alerts via email (Azure Communication Services or SendGrid) when compliance violations are found.
+**GitHub Project 1: AWS-Triggered Network Compliance Monitor**
 
-**GitHub Project 2: AI-Powered Network Troubleshooter**
+A Lambda function that runs on a schedule (EventBridge rule), calls Catalyst Center or Meraki API to check device compliance, stores results in Amazon DynamoDB (or S3), and sends alerts via Amazon SNS/SES when compliance violations are found. The Lambda uses an IAM execution role with least-privilege permissions and reads credentials from Secrets Manager — never from code.
 
-A Python application that takes a network problem description as input, uses Azure OpenAI Service to analyze it against your network documentation and common Cisco troubleshooting patterns, and returns structured troubleshooting steps. Demonstrates Azure AI integration with domain-specific network engineering knowledge.
+**GitHub Project 2: AI-Powered Network Troubleshooter + MCP Server**
+
+A Python application that takes a network problem description, uses Amazon Bedrock to analyze it against your network documentation and common Cisco troubleshooting patterns, and returns structured troubleshooting steps. You then wrap your network data in an **MCP server (FastMCP)** so an LLM agent can query it as a tool, with a short write-up on AI risks (prompt injection, secret handling, input validation, why MCP tools should be read-only and least-privilege).
 
 **Time estimate:** 6-8 weeks (24-32 sessions)
 
 **What this teaches an interviewer about you:**
-This is the differentiator. Most network engineers cannot demonstrate cloud automation skills. These projects prove you can build serverless applications, work with cloud APIs, integrate on-prem network infrastructure with cloud services, and use AI services. For Microsoft, AWS, or any cloud company, this demonstrates you bridge the gap between traditional networking and modern cloud architecture.
+This is the differentiator. Most network engineers cannot demonstrate cloud automation skills. These projects prove you can build serverless applications, work with cloud APIs (pagination, retries, auth), integrate on-prem network infrastructure with cloud services, build an MCP server and an LLM agent, and reason about AI security risks. For AWS, Microsoft, or any cloud company, this demonstrates you bridge the gap between traditional networking and modern cloud + AI architecture.
 
-**README template for Azure projects:**
+**README template for AWS projects:**
 
 ```markdown
-# Azure Network Compliance Monitor
+# AWS Network Compliance Monitor
 
-An Azure Functions application that monitors network device compliance
-by integrating Catalyst Center APIs with Azure cloud services.
+An AWS serverless application that monitors network device compliance
+by integrating Catalyst Center APIs with AWS cloud services.
 
 ## What It Does
-- Runs on a schedule via Azure Timer Trigger
+- Runs on a schedule via an Amazon EventBridge rule
 - Calls Catalyst Center API to check device compliance
-- Stores compliance history in Azure Table Storage
-- Sends email alerts when violations are detected
+- Stores compliance history in Amazon DynamoDB
+- Sends alerts via Amazon SNS/SES when violations are detected
 
 ## Architecture
-< diagram: Azure Function -> Catalyst Center API -> Azure Storage -> Alerts >
+< diagram: EventBridge -> Lambda -> Catalyst Center API -> DynamoDB -> SNS >
 
-## Azure Services Used
-- Azure Functions (serverless compute)
-- Azure Table Storage (data persistence)
-- Azure Communication Services (email alerts)
+## AWS Services Used
+- AWS Lambda (serverless compute)
+- Amazon EventBridge (scheduling)
+- Amazon DynamoDB (data persistence)
+- Amazon SNS/SES (alerts)
+- AWS Secrets Manager + IAM role (secure, least-privilege credential handling)
 
 ## Setup
-< Azure account setup, function deployment, environment variables >
+< AWS account setup, SAM/CLI deployment, IAM role, secrets configuration >
 
 ## What I Learned
-< serverless, cloud APIs, hybrid cloud-network integration >
+< serverless, boto3, cloud APIs, IAM least privilege, hybrid cloud-network integration >
 
 ## Technologies
-Python 3.x, Azure Functions, Azure SDK, Catalyst Center API, REST APIs
+Python 3.x, AWS Lambda, boto3, EventBridge, DynamoDB, Catalyst Center API, REST APIs
 ```
 
 ---
@@ -594,63 +604,65 @@ Terraform, HCL, AzureRM provider, Azure VNet, NSG, Azure Storage
 
 ---
 
-### Module 6.6: AWS Mini-Module (2-3 weeks, optional)
+### Module 6.6: Azure Mini-Module (2-3 weeks, optional)
 
-**Philosophy:** If AWS is on your target list, you need at least one AWS project so your resume is not Azure-only. This is a lightweight module: learn enough AWS to be conversant and have one Lambda project on GitHub. If your target is purely Microsoft/Azure, skip this and come back later.
+**Philosophy:** If Azure is on your target list, you need at least one Azure project so your resume is not AWS-only. This is a lightweight module: learn enough Azure to be conversant and have one Azure Functions project on GitHub. It pairs naturally with Module 6.5 (Terraform + AzureRM), where you already provisioned Azure infrastructure — here you add serverless compute and Bicep on top. If your target is purely AWS, skip this and come back later.
 
-**GitHub Project: Lambda + boto3 Network Tool**
+**GitHub Project: Azure Function + Bicep Network Tool**
 
-An AWS Lambda function written in Python that uses boto3 to audit VPC security groups (or VPC route tables), identifies overly permissive rules, and writes a JSON report to an S3 bucket. Deployed via AWS CLI.
+An HTTP/timer-triggered Azure Function in Python that audits a resource (for example, flags NSG rules that allow `0.0.0.0/0` on sensitive ports, or pulls device data) and writes a JSON report to Azure Blob Storage. Deployed with Azure CLI; a small Bicep template provisions the storage account. Includes an AWS-vs-Azure comparison so you can speak to both clouds.
 
 **What you will learn:**
-- AWS account setup and free tier limits
-- AWS CLI configuration and IAM basics (users, roles, policies)
-- Lambda function creation and deployment
-- boto3 SDK for Python (EC2, VPC, S3 clients)
-- S3 bucket operations (put object, presigned URLs)
-- Key differences between Azure and AWS (naming, structure, auth model)
+- Azure free tier account setup and Portal navigation
+- Azure CLI basics (`az login`, `az group create`, `az functionapp create`)
+- Azure Functions in Python (HTTP and timer triggers)
+- Azure SDK for Python basics (`azure-identity`, `azure-storage-blob`)
+- Bicep syntax for declaring Azure resources (storage account)
+- Managed identities vs service principals (the Azure auth model) — no hardcoded secrets
+- Key differences between AWS and Azure (naming, structure, auth model, IaC)
 
 **Weekly structure:**
-- Week 1: AWS account, CLI setup, IAM user, first Lambda function (hello world), boto3 basics
-- Week 2: Build the security group auditor with boto3, write results to S3
-- Week 3: Polish, add input parameters, write README with Azure vs AWS comparison
+- Week 1: Azure account, CLI, first Azure Function (HTTP trigger), basic SDK calls
+- Week 2: Add a timer trigger, write the report to Blob Storage, write the Bicep template for the storage account
+- Week 3: Polish, add input parameters, write README with an AWS vs Azure comparison
 
 **Time estimate:** 2-3 weeks (8-12 sessions)
 
 **What this teaches an interviewer about you:**
-You are not locked into a single cloud. You can work across Azure and AWS, understand both platforms' core services (compute, storage, IAM, networking), and can build serverless automation on either. Multi-cloud awareness is a strong signal for SE roles.
+You are not locked into a single cloud. You can work across AWS and Azure, understand both platforms' core services (compute, storage, IAM, networking), and can build serverless automation on either. Multi-cloud awareness is a strong signal for SE roles.
 
 **README template for this project:**
 
 ```markdown
-# Lambda + boto3 Network Tool
+# Azure Function + Bicep Network Tool
 
-An AWS Lambda function that audits VPC security groups for overly
-permissive rules and writes a report to S3.
+An Azure Function that audits NSG rules for overly permissive entries
+and writes a report to Azure Blob Storage, with a Bicep-deployed
+storage account.
 
 ## What It Does
-- Scans all security groups in a VPC
+- Scans NSG rules (or pulls device data) on a trigger
 - Identifies rules allowing 0.0.0.0/0 on sensitive ports
 - Generates a JSON report with findings and recommendations
-- Stores the report in an S3 bucket
+- Stores the report in Azure Blob Storage
 
-## AWS Services Used
-- AWS Lambda (serverless compute)
-- boto3 SDK (EC2, VPC, S3)
-- S3 (report storage)
-- IAM (least-privilege execution role)
+## Azure Services Used
+- Azure Functions (serverless compute)
+- Azure Blob Storage (report storage)
+- Bicep (declarative IaC for the storage account)
+- Managed identity (secret-free authentication)
 
-## Azure vs AWS
-< comparison table of equivalent services >
+## AWS vs Azure
+< comparison table of equivalent services: Lambda/Functions, S3/Blob, IAM/Entra, CloudFormation/Bicep >
 
 ## How to Run
-< AWS CLI commands for deployment and invocation >
+< Azure CLI commands for Function deploy and Bicep deploy >
 
 ## What I Learned
-< Lambda, boto3, IAM, multi-cloud patterns >
+< Azure Functions, Azure SDK, Bicep, managed identity, multi-cloud patterns >
 
 ## Technologies
-Python 3.x, AWS Lambda, boto3, AWS CLI, S3, IAM
+Python 3.x, Azure Functions, Azure SDK, Azure CLI, Bicep, Blob Storage
 ```
 
 ---
@@ -891,9 +903,9 @@ This table maps each module to the skills that appear in real job descriptions f
 | **Python / Scripting** | P | x | x | x | x | x | x | | | x | x | | x | | x |
 | **REST APIs** | | | P | | P | x | x | | | | | | x | | x |
 | **Ansible / IaC** | | | | | | | | P | | | | | x | x | x |
-| **Infrastructure as Code (Terraform/Bicep)** | | | | P | | | | | P | | | | | | x |
-| **Azure / Cloud Platforms** | | | | P | | P | | | x | | | | | | x |
-| **AWS** | | | | | | | | | | P | | | | | x |
+| **Infrastructure as Code (Terraform/CloudFormation/Bicep)** | | | | P | | | | | P | x | | | | | x |
+| **Azure / Cloud Platforms** | | | | | | x | | | x | P | | | | | x |
+| **AWS** | | | | P | | P | | | | x | | | | | x |
 | **CI/CD / DevOps** | | | | | | | | | | | | | | P | x |
 | **Containers (Docker)** | | | | | | | | | | | | P | | | x |
 | **Network Automation** | x | P | x | | P | x | P | P | | | P | | P | x | P |
@@ -907,7 +919,7 @@ This table maps each module to the skills that appear in real job descriptions f
 
 ### How to Use This in Interviews
 
-When a job description says "experience with REST APIs and Python scripting," you can point to Modules 1, 3, 4, and your GitHub projects. When it says "cloud automation and Azure," point to Modules 3.5 and 4.5. When it says "Terraform" or "Infrastructure as Code," point to Modules 3.5 and 6.5. This map helps you connect your learning directly to job requirements.
+When a job description says "experience with REST APIs and Python scripting," you can point to Modules 1, 3, 4, and your GitHub projects. When it says "cloud automation and AWS," point to Modules 3.5 and 4.5. When it says "Azure," point to Modules 6.5 and 6.6. When it says "Terraform" or "Infrastructure as Code," point to Modules 3.5 (CloudFormation), 6.5 (Terraform), and 6.6 (Bicep). When it mentions "AI," "LLM," or "agents," point to Module 4.5 (Bedrock, MCP server, LLM agent). This map helps you connect your learning directly to job requirements.
 
 ---
 
@@ -944,7 +956,7 @@ This curriculum also aligns with the Cisco CCNP/CCIE Automation core exam (350-9
 | 4.1 AI-assisted code: benefits and risks | | Not covered | **GAP: Add to Module 4.5** |
 | 4.2 Security risks in AI automation | | Not covered | **GAP: Add to Module 4.5** |
 | 4.3 MCP server with Python FastMCP | | Not covered | **GAP: Add to Module 4.5** |
-| 4.4 Conversational LLM agent for automation | | Module 4.5 (Azure OpenAI) | **Expand: build a proper LLM agent** |
+| 4.4 Conversational LLM agent for automation | | Module 4.5 (AWS Bedrock) | **Expand: build a proper LLM agent** |
 | 4.5 Evaluate AI recommendation accuracy | | Not covered | **GAP: Add to Module 4.5** |
 
 ### How Gaps Will Be Closed
@@ -1078,13 +1090,13 @@ network_automation_learning/
 ├── module1_python_basics/                 # Module 1: Python Fundamentals
 ├── module2_ssh_automation/                # Module 2: SSH with Netmiko (1 week)
 ├── module3_rest_basics/                   # Module 3: REST API Basics
-├── module3_5_azure_taster/                # Module 3.5: Azure Taster (2 weeks)
+├── module3_5_aws_taster/                  # Module 3.5: AWS Taster (2 weeks)
 ├── module4_controller_apis/               # Module 4: Controller APIs
-├── module4_5_azure_automation/            # Module 4.5: Azure Cloud Automation (Deep Dive)
+├── module4_5_aws_automation/              # Module 4.5: AWS Cloud Automation (Deep Dive)
 ├── module5_netconf_yang/                  # Module 5: NETCONF/YANG (compressed)
 ├── module6_ansible/                       # Module 6: Ansible (shrunk)
 ├── module6_5_terraform/                   # Module 6.5: Terraform + AzureRM
-├── module6_6_aws_mini/                    # Module 6.6: AWS Mini-Module (optional)
+├── module6_6_azure_mini/                  # Module 6.6: Azure Mini-Module (optional)
 ├── module7_testing/                       # Module 7: Testing & Validation
 ├── module7_5_docker/                      # Module 7.5: Docker Basics
 ├── module8_orchestration/                 # Module 8: Orchestration
@@ -1114,13 +1126,13 @@ network_automation_learning/
 | regex, JSON, CSV | Module 1 |
 | Netmiko | Module 2 |
 | requests, Flask | Module 3 |
-| Azure CLI, Bicep, Azure Functions | Module 3.5 |
+| AWS CLI, CloudFormation, Lambda, IAM | Module 3.5 |
 | Catalyst Center API, Meraki API | Module 4 |
-| Azure Functions, Azure SDK, Azure AI | Module 4.5 |
+| AWS Lambda, boto3, Bedrock AI, MCP/FastMCP | Module 4.5 |
 | ncclient, YANG, RESTCONF | Module 5 |
 | Ansible, Jinja2, Vault | Module 6 |
 | Terraform, HCL, AzureRM provider | Module 6.5 |
-| AWS Lambda, boto3, AWS CLI | Module 6.6 |
+| Azure Functions, Azure SDK, Bicep | Module 6.6 |
 | pytest, pyATS | Module 7 |
 | Docker, Dockerfile, docker-compose | Module 7.5 |
 | Nornir | Module 8 |
@@ -1136,12 +1148,17 @@ These are for looking things up when you are stuck. Do not use them as your prim
 - [Cisco DevNet](https://developer.cisco.com) - API documentation
 - [Catalyst Center API Docs](https://developer.cisco.com/docs/dna-center/) - Controller API reference
 - [Meraki API Docs](https://developer.cisco.com/meraki/api/) - Cloud-managed API reference
-- [Azure Documentation](https://learn.microsoft.com/en-us/azure/) - Azure service documentation
-- [Azure Functions Python Guide](https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference-python) - Serverless Python
-- [Bicep Docs](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/) - Azure declarative IaC
+- [AWS Documentation](https://docs.aws.amazon.com/) - AWS service documentation
+- [AWS Lambda Python Docs](https://docs.aws.amazon.com/lambda/latest/dg/lambda-python.html) - Lambda with Python
+- [boto3 Documentation](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) - AWS SDK for Python
+- [AWS CloudFormation User Guide](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html) - AWS declarative IaC
+- [Amazon Bedrock Docs](https://docs.aws.amazon.com/bedrock/) - Managed foundation models / AI
+- [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) - MCP spec and FastMCP for AI agents
 - [HashiCorp Terraform Docs](https://developer.hashicorp.com/terraform/docs) - Terraform reference
 - [AzureRM Provider Docs](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs) - Terraform Azure provider
-- [AWS Lambda Python Docs](https://docs.aws.amazon.com/lambda/latest/dg/lambda-python.html) - Lambda with Python
+- [Azure Documentation](https://learn.microsoft.com/en-us/azure/) - Azure service documentation (Module 6.6)
+- [Azure Functions Python Guide](https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference-python) - Serverless Python (Module 6.6)
+- [Bicep Docs](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/) - Azure declarative IaC (Module 6.6)
 - [Docker Docs](https://docs.docker.com/) - Container reference
 - [Ansible Network Docs](https://docs.ansible.com/ansible/latest/network/index.html) - Network modules
 - [GitHub Actions Docs](https://docs.github.com/en/actions) - CI/CD reference

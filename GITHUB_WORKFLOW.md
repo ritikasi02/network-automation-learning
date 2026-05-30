@@ -196,7 +196,7 @@ module1: fix regex pattern for parsing OSPF neighbors
 module1: add JSON export to config analyzer
 module3: implement CML API authentication
 module4: add Meraki device inventory endpoint
-module4.5: create Azure Function for compliance check
+module4.5: create Lambda function for compliance check
 module6: add Jinja2 template for VLAN configuration
 module9: add GitHub Actions workflow for pytest
 module1: update README with setup instructions
@@ -348,7 +348,7 @@ Go to your GitHub profile page and click "Customize your pins." Select the 6 rep
 **Ideal pinned repos for your target roles:**
 1. Network Config Analyzer (Module 1) - shows Python skills
 2. Catalyst Center Automation Toolkit (Module 4) - shows API skills
-3. Azure Network Compliance Monitor (Module 4.5) - shows cloud skills
+3. AWS Network Compliance Monitor (Module 4.5) - shows cloud + AI/MCP skills
 4. Ansible Network Automation Collection (Module 6) - shows IaC skills
 5. Automated Network Pipeline (Module 9) - shows CI/CD skills
 6. Cloud-Integrated Network Automation Platform (Module 10) - shows everything
@@ -368,14 +368,14 @@ into Solution Engineering and Cloud Automation.
 ## What I'm Building
 
 - Python automation tools for Cisco Catalyst Center and Meraki
-- Azure Functions integrating cloud services with network infrastructure
+- AWS Lambda functions integrating cloud services with network infrastructure
 - Ansible collections for network device management
 - CI/CD pipelines with GitHub Actions
 
 ## Skills
 
-Python | REST APIs | Azure | Ansible | Cisco Catalyst Center | Meraki |
-NETCONF/YANG | GitHub Actions | pytest
+Python | REST APIs | AWS | Azure | Ansible | Cisco Catalyst Center | Meraki |
+NETCONF/YANG | Bedrock | MCP | GitHub Actions | pytest
 
 ## Background
 
@@ -396,12 +396,12 @@ Commit every study session. Four commits per week means four green squares per w
 
 Every repo should have a one-line description on GitHub. Go to each repo's settings and add it. Examples:
 - "Python tool for parsing and analyzing Cisco IOS configurations"
-- "Azure Functions app for monitoring network device compliance"
+- "AWS Lambda app for monitoring network device compliance"
 - "Ansible collection for automating Cisco IOS/IOS-XE operations"
 
 ### Add topics to your repos
 
-On each repo page, click "About" (gear icon) and add topics like: `python`, `network-automation`, `cisco`, `rest-api`, `azure`, `ansible`, `devops`. This helps your repos appear in GitHub search results.
+On each repo page, click "About" (gear icon) and add topics like: `python`, `network-automation`, `cisco`, `rest-api`, `aws`, `azure`, `ansible`, `devops`. This helps your repos appear in GitHub search results.
 
 ---
 
@@ -464,6 +464,11 @@ Thumbs.db
 
 # Output files that can be regenerated
 outputs/
+
+# AWS
+.aws-sam/
+samconfig.toml
+.aws/
 
 # Azure
 local.settings.json

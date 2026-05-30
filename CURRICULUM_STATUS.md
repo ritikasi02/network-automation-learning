@@ -14,7 +14,7 @@ Module 1:   ░░░░░░░░░░░░░░░░░░░░   0%  I
 Module 2:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
 Module 3:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
 Module 4:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
-Module 4.5: ░░░░░░░░░░░░░░░░░░░░   0%  Not Started (NEW - Azure Cloud Automation)
+Module 4.5: ░░░░░░░░░░░░░░░░░░░░   0%  Not Started (NEW - AWS Cloud Automation)
 Module 5:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
 Module 6:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
 Module 7:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
@@ -127,28 +127,29 @@ You are done with Module 1 when:
 
 ---
 
-## Module 4.5: Azure Cloud Automation (6-8 weeks) -- NEW
+## Module 4.5: AWS Cloud Automation (6-8 weeks) -- NEW
 
 **Status:** Not Started
-**GitHub Projects:** Azure Network Compliance Monitor + AI-Powered Network Troubleshooter
+**GitHub Projects:** AWS Network Compliance Monitor + AI-Powered Network Troubleshooter (with MCP Server)
 
 ### Deliverables
 
-- [ ] Set up Azure free tier account
-- [ ] Learn Azure Portal, CLI, resource groups
-- [ ] Build first Azure Function (HTTP trigger)
-- [ ] Build timer-triggered function for scheduled automation
-- [ ] Use Azure REST APIs and SDK for Python
-- [ ] Integrate Azure Function with Catalyst Center or Meraki API
-- [ ] Store results in Azure Table Storage
-- [ ] Set up email alerts for compliance violations
-- [ ] Build AI-powered troubleshooter with Azure OpenAI Service
+- [ ] Set up AWS free tier account + billing budget alarm
+- [ ] Learn IAM (users, roles, policies, least privilege), Console, AWS CLI profiles
+- [ ] Build first Lambda function (HTTP via Function URL or API Gateway)
+- [ ] Build EventBridge-scheduled Lambda for timer-based automation
+- [ ] Use the boto3 SDK and AWS REST APIs (pagination, retries, rate-limit handling)
+- [ ] Integrate a Lambda with Catalyst Center or Meraki API
+- [ ] Store results in DynamoDB (or S3); read secrets from Secrets Manager (no hardcoded keys)
+- [ ] Set up alerts for compliance violations via SNS/SES
+- [ ] Build AI-powered troubleshooter with Amazon Bedrock
+- [ ] Build an MCP server (FastMCP) + conversational LLM agent; write up AI risks (AUTOCOR Domain 4)
 - [ ] Push both projects to GitHub with READMEs
 
 ### Completion Criteria
 
-1. Working Azure Function that monitors network compliance
-2. AI-powered troubleshooter using Azure OpenAI
+1. Working Lambda that monitors network compliance, scheduled via EventBridge
+2. AI-powered troubleshooter using Amazon Bedrock, exposed to an LLM agent via an MCP server
 3. Both projects on GitHub with architecture diagrams in READMEs
 
 ---
@@ -303,7 +304,7 @@ Fill this in as you progress. It helps you see your actual pace vs. estimates.
 | All modules complete | +48 weeks | | |
 | Job applications begin | When Module 4.5 is done | | Can start applying while continuing |
 
-**Note:** You can start applying for jobs after completing Module 4.5. You will have Python, REST API, Controller API, and Azure projects on GitHub, which covers the core skills most job descriptions require. Continue building modules 5-10 while applying.
+**Note:** You can start applying for jobs after completing Module 4.5. You will have Python, REST API, Controller API, and AWS cloud + AI/MCP projects on GitHub, which covers the core skills most job descriptions require. Continue building modules 5-10 while applying.
 
 ---
 
