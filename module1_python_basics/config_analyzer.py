@@ -21,6 +21,7 @@
 import os
 import re
 import json
+import ipaddress
 
 
 def read_confg(filepath):
@@ -30,7 +31,9 @@ def read_confg(filepath):
 def get_hostname(lines):
     for line in lines:
         if line.strip().startswith("hostname"):
-            return [{"hostname": line.split()[1]}]
+            parts = line.split()
+            if len(parts) >= 2:
+                return parts[1]
     return "unknown"
     
 def get_interfaces(lines):
@@ -39,13 +42,22 @@ def get_interfaces(lines):
         if line.strip().startswith("interface"):
             for j in range(i+1, min(i+10, len(lines))):
                 if "ip address" in lines[j] and "no ip address" not in lines[j]:
-                    ip = lines[j].strip().split()[2]
-                    mask = lines[j].strip().split()[3]
-                    interface.append({"name": line.strip(),"ip": ip, "mask":mask})
-                    break
+                    parts = lines[j].strip().split()
+                    if len(parts) >= 4 and ipadd(parts[2]):
+                        ip = parts[2]
+                        mask = parts[3]
+                        interface.append({"name": line.strip(),"ip": ip, "mask":mask})
+                        break
                 if lines[j].strip() == '!':
                     break
     return interface
+
+def ipadd(value):
+    try:
+        ipaddress.ip_address(value)
+        return True
+    except ValueError:
+        return False
 
 def get_ospf(lines):
     ospf = []
@@ -66,17 +78,26 @@ def get_ospf(lines):
 def build_data():    
     data = []
     folder = "sample_configs"
-    config_files = sorted(os.listdir(folder))
+    try:
+        config_files = sorted(os.listdir(folder))
+    except OSError as e:
+        print(f"cannot read config folder '{folder}': {e}")
+        return data
     for filename in config_files:
+        if not filename.endswith(".txt"):
+            continue
         filepath = os.path.join(folder, filename)
-        lines =read_confg(filepath)
-        hostname = get_hostname(lines)
-        interface = get_interfaces(lines)
+        try:
+            lines =read_confg(filepath)
+            hostname = get_hostname(lines)
+            interface = get_interfaces(lines)
 #      print(hostname)
 #       for intf in interface:
 #           print(f" {intf['name']} {intf['ip']} {intf['mask']}")
-        ospf = get_ospf(lines)
-        data.append({"hostname": hostname, "interfaces": interface, "ospf": ospf})
+            ospf = get_ospf(lines)
+            data.append({"hostname": hostname, "interfaces": interface, "ospf": ospf})
+        except (OSError, UnicodeDecodeError) as e:
+            data.append({"file": filename, "error": str(e)})
 #       for c in ospf:
 #          print(f" network {c['network']} {c['wildcard']} area {c['area']}" )
     return data

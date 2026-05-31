@@ -1,10 +1,6 @@
 [
   {
-    "hostname": [
-      {
-        "hostname": "R1"
-      }
-    ],
+    "hostname": "R1",
     "interfaces": [
       {
         "name": "interface Loopback0",
@@ -41,11 +37,7 @@
     ]
   },
   {
-    "hostname": [
-      {
-        "hostname": "R2"
-      }
-    ],
+    "hostname": "R2",
     "interfaces": [
       {
         "name": "interface Loopback0",
@@ -80,5 +72,41 @@
         "area": "0"
       }
     ]
+  },
+  {
+    "hostname": "R3",
+    "interfaces": [
+      {
+        "name": "interface GigabitEthernet0/0",
+        "ip": "10.3.3.1",
+        "mask": "255.255.255.0"
+      },
+      {
+        "name": "interface GigabitEthernet0/2",
+        "ip": "192.168.3.1",
+        "mask": "255.255.255.0"
+      },
+      {
+        "name": "interface GigabitEthernet0/3",
+        "ip": "192.168.3.1",
+        "mask": "255.255.255.0"
+      }
+    ],
+    "ospf": [
+      {
+        "network": "10.3.3.0",
+        "wildcard": "0.0.0.255",
+        "area": "0"
+      }
+    ]
+  },
+  {
+    "hostname": "unknown",
+    "interfaces": [],
+    "ospf": []
+  },
+  {
+    "file": "realbinary.txt",
+    "error": "'utf-8' codec can't decode byte 0xff in position 0: invalid start byte"
   }
 ]
