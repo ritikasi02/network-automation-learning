@@ -1,4 +1,8 @@
-Front	Back
+#separator:tab
+#html:false
+#deck:Network Automation::Module 1 - Python::S4-5 Indexing, Regex & os
+#tags:module1-python session::4-5 autocor::1.4 topic::regex topic::os-module topic::indexing
+#columns:Front	Back
 You have a config line at position i, and you need to read the network statements 3 lines below it. Why does "lines[j]" work but "line[j]" gives you garbage?	"line" is the single current line (one string) at position i. Indexing a string gives a CHARACTER, so line[99] is the 100th letter of that one line. "lines" is the whole list, so lines[99] is the entire line at position 99. To look ahead at OTHER lines, you must index the full list with lines[j].
 In get_interfaces you "break" right after finding the IP, but in get_ospf you must NOT break after finding a network. Why the difference?	An interface has only ONE ip address, so once you find it, you're done — break saves work. An OSPF block has MULTIPLE network statements you want to collect, so breaking after the first would miss the rest. You only break when you hit "!" (the block ended).
 Why do you write your regex pattern as r"network (\S+)" with an "r" in front instead of just "network (\S+)"?	The "r" makes it a raw string, so Python doesn't try to interpret backslashes (like \S or \d) as special escape characters. Without r, Python might mangle the backslashes before regex even sees them. Always use r"..." for regex patterns to be safe.

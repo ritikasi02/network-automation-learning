@@ -1,4 +1,8 @@
-Front	Back
+#separator:tab
+#html:false
+#deck:Network Automation::Module 1 - Python::S1-3 Files, Loops & Functions
+#tags:module1-python session::1-3 autocor::1.4 topic::file-io topic::loops topic::functions
+#columns:Front	Back
 Why can't you call .readlines() on a file after already looping through it with "for line in f:"?	A file is like a tape player — once you loop through it, the "playhead" is at the end. There's nothing left to read. You need to either open the file again or use readlines() BEFORE looping.
 You find "interface GigabitEthernet0/0" on line 69. The IP address is on line 72. Why does "for line in f:" fail here, but readlines() with indexing works?	"for line in f:" only gives you the current line — you can't look ahead or jump to line 72. readlines() stores ALL lines in a list, so you can access any position with y[72] or y[i+3] whenever you need to look at nearby lines.
 In "for i, line in enumerate(lines):" — why do you need TWO variables? What breaks if you write "for i in enumerate(lines):"?	enumerate() gives you two things each iteration: position number AND the item. With one variable, Python stuffs both into a single tuple like (69, "interface Gig0/0\n") which is messy to work with. Two variables unpack them cleanly into separate pieces.

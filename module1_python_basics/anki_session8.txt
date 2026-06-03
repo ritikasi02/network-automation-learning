@@ -1,4 +1,8 @@
-Front	Back
+#separator:tab
+#html:false
+#deck:Network Automation::Module 1 - Python::S8 Robust Parsing & Errors
+#tags:module1-python session::8 autocor::1.4 autocor::3.3 topic::error-handling topic::exceptions topic::validation
+#columns:Front	Back
 Your parser handles R1/R2 fine, so you conclude "the parsing layer can't crash, it just returns a list or unknown." Why is that intuition wrong?	It's only true for well-formed input. Functions that grab a FIXED position — split()[1], split()[2] — silently assume the structure has that many tokens. A real line like a bare "hostname" or "ip address dhcp" has fewer tokens, so the index is out of range and raises IndexError. A SEARCH (regex, "in", startswith) can find nothing safely; POSITIONAL access asserts a structure that may not exist.
 A malformed line causes a crash on one device but silently-wrong data on another. Which is more dangerous in network automation, and why?	Silent garbage is worse. A crash is LOUD — you notice immediately and fix it. Silent garbage quietly corrupts output.json (your source of truth), and a downstream automation may push the bad config before anyone notices. Robust code converts silent failures into either correct values or loud, explicit errors.
 "ip address dhcp" no longer crashes your len-guarded parser, but "ip address dhcp hostname FOO" still slips through as ip="dhcp". Why does a length check stop one but not the other?	A length/count guard only answers "does index [3] exist?" — it prevents the IndexError crash. It cannot tell whether parts[2] is "10.1.1.1" or "dhcp"; both have identical length. Distinguishing them requires a CONTENT check (is parts[2] a valid IP?). Count guards stop crashes; content guards stop garbage. Production parsing needs both.

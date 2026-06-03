@@ -1,4 +1,8 @@
-Front	Back
+#separator:tab
+#html:false
+#deck:Network Automation::Module 1 - Python::S6-7 Return Types & JSON
+#tags:module1-python session::6-7 autocor::1.4 topic::json topic::serialization topic::return-types
+#columns:Front	Back
 Your loop "for j in range(i+1, i+10)" works on your test config but could crash on a real one. When, and why does "min(i+10, len(lines))" fix it?	If an interface or router block starts within 10 lines of the END of the file, i+10 points past the last index, so lines[j] raises IndexError: list index out of range. min(i+10, len(lines)) caps the ceiling at the list length, so the loop never reads beyond the last real line. You write for configs you haven't seen yet.
 get_hostname returns None when no hostname exists, but get_interfaces returns an empty list []. Why the difference, given similar-looking code?	get_hostname has its "return" INSIDE the loop, so if nothing matches, the loop ends, the function falls off, and Python returns None automatically. get_interfaces initializes "interface = []" before the loop and has "return interface" AFTER it, so with no matches it returns the empty list it started with.
 Why is returning an empty list [] safer than returning None when nothing is found?	You can safely loop over [] (the body just doesn't run) and call len() on it. None crashes when you try to loop over it or treat it like a collection. So a function that returns a collection should default to an empty collection, not None.
