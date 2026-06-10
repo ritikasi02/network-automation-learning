@@ -22,6 +22,10 @@ import os
 import re
 import json
 import ipaddress
+import logging
+from time import asctime
+
+logger = logging.getLogger(__name__) #just grab a logger to talk to, not configured anything yet
 
 
 def read_confg(filepath):
@@ -81,7 +85,7 @@ def build_data():
     try:
         config_files = sorted(os.listdir(folder))
     except OSError as e:
-        print(f"cannot read config folder '{folder}': {e}")
+        logger.critical(f"cannot read config folder '{folder}': {e}")
         return data
     for filename in config_files:
         if not filename.endswith(".txt"):
@@ -95,18 +99,25 @@ def build_data():
 #       for intf in interface:
 #           print(f" {intf['name']} {intf['ip']} {intf['mask']}")
             ospf = get_ospf(lines)
+            logger.debug(" file %s with hostname %s has %s interfaces and %d OSPF networks", filename, hostname, len(interface), len(ospf))
             data.append({"hostname": hostname, "interfaces": interface, "ospf": ospf})
+
         except (OSError, UnicodeDecodeError) as e:
             data.append({"file": filename, "error": str(e)})
+            logger.error(f"failed to open '{filename}' : {e}")
 #       for c in ospf:
 #          print(f" network {c['network']} {c['wildcard']} area {c['area']}" )
     return data
 
-
 if __name__ == "__main__":
+    logging.basicConfig(filename="config_analyzer.log",level=logging.INFO,format="%(asctime)s %(levelname)s %(name)s %(message)s")
+    logger.info("run started")
     data = build_data()
     with open("output.json", "w") as f:
         json.dump(data, f, indent=2)
-    
+    logger.info("run finished")
+
+
+
 
          
