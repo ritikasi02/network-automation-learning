@@ -12,12 +12,13 @@
 # - datetime (date and time handling)
 # - os (operating system interface)
 # - typing (type hints)
+# - pytest (testing framework)
 
 # Optional: Development tools (not required for core functionality)
 # Uncomment if you want to use these tools:
 
 # ipython>=8.0.0          # Enhanced Python interactive shell
-# pytest>=7.0.0           # Testing framework
+  pytest>=7.0.0           # Testing framework
 # black>=23.0.0           # Code formatter
 # pylint>=2.15.0          # Code linter
 # mypy>=1.0.0             # Static type checker
@@ -32,6 +33,7 @@
 # Module 5: ncclient
 # Module 6: ansible
 # And more...
+
 
 
 
