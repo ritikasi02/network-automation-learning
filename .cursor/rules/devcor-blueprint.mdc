@@ -5,7 +5,7 @@ alwaysApply: true
 
 # CCNP/CCIE Automation — AUTOCOR 350-901 v2.0 Blueprint Alignment
 
-The learner is preparing for both cloud SE interviews AND the Cisco CCNP Automation certification (core exam: 350-901 AUTOCOR v2.0). When helping with any module, exercise, or project, actively reinforce exam topics whenever the opportunity arises naturally.
+The learner is preparing for the Cisco CCNP Automation and cloud certification (core exam: 350-901 AUTOCOR v2.0). When helping with any module, exercise, or project, actively reinforce exam topics whenever the opportunity arises naturally.
 
 NOTE: The old DEVCOR v1.1 exam has been retired. The current exam is AUTOCOR v2.0 — "Designing, Deploying and Managing Network Automation Systems." Do NOT reference DEVCOR topics that were dropped (Webex Teams, Firepower FDM, UCS, Intersight, AppDynamics, NSO, Kubernetes, OAuth2 three-legged flow, 12-factor app, database types, architectural patterns).
 
