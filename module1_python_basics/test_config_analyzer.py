@@ -1,5 +1,7 @@
-from config_analyzer import get_hostname, get_interfaces, read_confg
+
 import pytest
+from config_analyzer import read_confg, GetConfig
+
 
 @pytest.mark.parametrize("lines, expected", [
     (["hostname R1\n", "!\n", "interface GigabitEthernet0/0\n"], "R1"),
@@ -7,7 +9,8 @@ import pytest
     (["hostname CORE-SW1\n", "!\n", "interface GigabitEthernet0/0\n"], "CORE-SW1"),
 ])
 def test_hostname(lines, expected):
-    result = get_hostname(lines)
+    a = GetConfig(lines)
+    result = a.get_hostname()
     assert result == expected
 
 #def test_get_hostname():
@@ -30,7 +33,8 @@ def test_get_interfaces():
              "media-type rj45",
              "!",
             ]
-    result = get_interfaces(lines)
+    a = GetConfig(lines) 
+    result = a.get_interfaces()
     assert result == [{"name": "interface GigabitEthernet0/0", "ip": "10.1.1.1", "mask":"255.255.255.0"}]
 
 def test_get_interfaces_no_ip():
@@ -42,7 +46,8 @@ def test_get_interfaces_no_ip():
              "media-type rj45",
              "!",
             ]
-    result = get_interfaces(lines)
+    a = GetConfig(lines) 
+    result = a.get_interfaces()
     assert result == []
 
     

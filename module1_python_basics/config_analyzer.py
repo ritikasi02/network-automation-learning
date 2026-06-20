@@ -25,6 +25,50 @@ import ipaddress
 import logging
 from time import asctime
 
+class GetConfig:
+    def __init__(self, lines):
+        self.data = lines
+    
+    def get_hostname(self):
+        for line in self.data:
+            if line.strip().startswith("hostname"):
+                parts = line.split()
+                if len(parts) >= 2:
+                    return parts[1]
+        return "unknown"
+
+    def get_interfaces(self):
+        interface = []
+        for i, line in enumerate(self.data):
+            if line.strip().startswith("interface"):
+                for j in range(i+1, min(i+10, len(self.data))):
+                    if "ip address" in self.data[j] and "no ip address" not in self.data[j]:
+                        parts = self.data[j].strip().split()
+                        if len(parts) >= 4 and ipadd(parts[2]):
+                            ip = parts[2]
+                            mask = parts[3]
+                            interface.append({"name": line.strip(),"ip": ip, "mask":mask})
+                            break
+                    if self.data[j].strip() == '!':
+                        break
+        return interface
+
+    def get_ospf(self):
+        ospf = []
+        for i, line in enumerate(self.data):
+            if line.strip().startswith("router ospf"):
+                for j in range(i+1, min(i+10, len(self.data))):
+                    match = re.search(r"network (\S+) (\S+) area (\d+)", self.data[j])
+                    if match:
+                        network_ip = match.group(1)
+                        wildcard = match.group(2)
+                        area = match.group(3)
+                        ospf.append({"network": network_ip, "wildcard": wildcard, "area": area})
+                    if self.data[j].strip() == '!':
+                        break
+        return ospf
+      
+
 logger = logging.getLogger(__name__) #just grab a logger to talk to, not configured anything yet
 
 
@@ -32,29 +76,6 @@ def read_confg(filepath):
     with open(filepath, "r") as f:
         return f.readlines()
 
-def get_hostname(lines):
-    for line in lines:
-        if line.strip().startswith("hostname"):
-            parts = line.split()
-            if len(parts) >= 2:
-                return parts[1]
-    return "unknown"
-    
-def get_interfaces(lines):
-    interface = []
-    for i, line in enumerate(lines):
-        if line.strip().startswith("interface"):
-            for j in range(i+1, min(i+10, len(lines))):
-                if "ip address" in lines[j] and "no ip address" not in lines[j]:
-                    parts = lines[j].strip().split()
-                    if len(parts) >= 4 and ipadd(parts[2]):
-                        ip = parts[2]
-                        mask = parts[3]
-                        interface.append({"name": line.strip(),"ip": ip, "mask":mask})
-                        break
-                if lines[j].strip() == '!':
-                    break
-    return interface
 
 def ipadd(value):
     try:
@@ -62,21 +83,6 @@ def ipadd(value):
         return True
     except ValueError:
         return False
-
-def get_ospf(lines):
-    ospf = []
-    for i, line in enumerate(lines):
-        if line.strip().startswith("router ospf"):
-            for j in range(i+1, min(i+10, len(lines))):
-                match = re.search(r"network (\S+) (\S+) area (\d+)", lines[j])
-                if match:
-                    network_ip = match.group(1)
-                    wildcard = match.group(2)
-                    area = match.group(3)
-                    ospf.append({"network": network_ip, "wildcard": wildcard, "area": area})
-                if lines[j].strip() == '!':
-                    break
-    return ospf
 
 
 def build_data():    
@@ -93,12 +99,13 @@ def build_data():
         filepath = os.path.join(folder, filename)
         try:
             lines =read_confg(filepath)
-            hostname = get_hostname(lines)
-            interface = get_interfaces(lines)
+            analyzer = GetConfig(lines)
+            hostname = analyzer.get_hostname()
+            interface = analyzer.get_interfaces()
 #      print(hostname)
 #       for intf in interface:
 #           print(f" {intf['name']} {intf['ip']} {intf['mask']}")
-            ospf = get_ospf(lines)
+            ospf = analyzer.get_ospf()
             logger.debug(" file %s with hostname %s has %s interfaces and %d OSPF networks", filename, hostname, len(interface), len(ospf))
             data.append({"hostname": hostname, "interfaces": interface, "ospf": ospf})
 
