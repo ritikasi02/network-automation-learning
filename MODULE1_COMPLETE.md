@@ -1,6 +1,7 @@
 # Module 1: Python Fundamentals - Status
 
-**Status:** INCOMPLETE - Materials created, independent learning not yet started
+**Status:** IN PROGRESS (~65%) - 11 sessions complete; several concept gaps remain (see "concepts still to cover" below)
+**Last Updated:** June 20, 2026
 **Estimated Duration:** 6-8 weeks at 20-30 min/day, 4 days/week
 
 ---
@@ -64,15 +65,33 @@ The goal is NOT to read the theory guide cover to cover. The goal is to build a 
 
 You are done with Module 1 when:
 
-- [ ] You have built a config analyzer from scratch (not copied the sample code)
-- [ ] You can explain every line of code you wrote
-- [ ] Your project reads config files and extracts: hostname, interfaces, IPs, routing protocols
-- [ ] Your project exports data to at least 2 formats (JSON + one other)
-- [ ] Your project handles errors gracefully (missing files, bad input)
-- [ ] Your project has logging
-- [ ] Your project is on GitHub with a clear README
-- [ ] You have 15+ commits showing your building process
-- [ ] You can answer: "What does this line do?" for any line in your code
+- [x] You have built a config analyzer from scratch (not copied the sample code)
+- [x] You can explain every line of code you wrote
+- [x] Your project reads config files and extracts: hostname, interfaces, IPs, routing protocols
+- [ ] Your project exports data to at least 2 formats (JSON + one other) — **only JSON done; CSV pending (Session 12)**
+- [x] Your project handles errors gracefully (missing files, bad input)
+- [x] Your project has logging
+- [ ] Your project is on GitHub with a clear README — **needs a project-specific README (Session 13)**
+- [x] You have 15+ commits showing your building process
+- [x] You can answer: "What does this line do?" for any line in your code
+
+### Python concepts from the theory guide still to cover
+
+**Tier 1 — required:**
+- [ ] **Sets** — not covered at all (no usage, no recall deck)
+- [ ] **Tuples** — only incidental so far (`enumerate`, `parametrize`); needs a focused lesson on immutability + multi-return
+- [ ] **CSV export** — only JSON export exists
+- [ ] **Organize code into modules** — project is still a single file; only the test imports across files
+- [x] **Virtual environment / dependency management** — confirmed: uses an activated project venv (theory §1.2)
+
+**Tier 2 — strongly recommended (in theory guide):**
+- [ ] **Parsing `show` command output** — `sample_outputs/` (show version, show ip interface brief, show ip route) is never parsed; needs `re.findall`/`finditer` + named groups
+- [ ] **List/dict comprehensions** — currently explicit `.append()` loops only
+- [ ] **Function depth** (default args, `*args`/`**kwargs`, returning tuples) and **class depth** (inheritance, `__str__`/`__repr__`)
+
+**Tier 3 — optional/advanced:** advanced logging (multi-handler, `RotatingFileHandler`), custom exceptions/`finally`, decorators, PEP 8 + docstrings polish.
+
+**Remaining: ~5-6 sessions** — S12 (CSV), S13 (sets & tuples via config comparison), S14 (parse show-output + comprehensions), S15 (split into modules), S16 (cleanup + project README + push); optional stretch session.
 
 ---
 

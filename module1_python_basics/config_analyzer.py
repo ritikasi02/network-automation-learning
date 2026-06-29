@@ -23,9 +23,10 @@ import re
 import json
 import ipaddress
 import logging
+import csv
 from time import asctime
 
-class GetConfig:
+class ConfigAnalyzer:
     def __init__(self, lines):
         self.data = lines
     
@@ -67,6 +68,13 @@ class GetConfig:
                     if self.data[j].strip() == '!':
                         break
         return ospf
+    
+    def to_dict(self):
+        return {
+            "hostname": self.get_hostname(),
+            "interfaces": self.get_interfaces(),
+            "ospf": self.get_ospf(),
+        }
       
 
 logger = logging.getLogger(__name__) #just grab a logger to talk to, not configured anything yet
@@ -99,15 +107,10 @@ def build_data():
         filepath = os.path.join(folder, filename)
         try:
             lines =read_confg(filepath)
-            analyzer = GetConfig(lines)
-            hostname = analyzer.get_hostname()
-            interface = analyzer.get_interfaces()
-#      print(hostname)
-#       for intf in interface:
-#           print(f" {intf['name']} {intf['ip']} {intf['mask']}")
-            ospf = analyzer.get_ospf()
-            logger.debug(" file %s with hostname %s has %s interfaces and %d OSPF networks", filename, hostname, len(interface), len(ospf))
-            data.append({"hostname": hostname, "interfaces": interface, "ospf": ospf})
+            analyzer = ConfigAnalyzer(lines)
+            device = analyzer.to_dict()
+            logger.debug(" file %s with hostname %s has %s interfaces and %d OSPF networks", filename, device["hostname"], len(["interfaces"]), len(["ospf"]))
+            data.append(device)
 
         except (OSError, UnicodeDecodeError) as e:
             data.append({"file": filename, "error": str(e)})
@@ -116,12 +119,28 @@ def build_data():
 #          print(f" network {c['network']} {c['wildcard']} area {c['area']}" )
     return data
 
+def export_csv(data,filepath):
+    columns = ["hostname", "interface_count", "ospf_count"]
+    with open(filepath, "w", newline="") as f:
+        writer = csv.DictWriter(f,fieldnames=columns)
+        writer.writeheader()
+        for device in data:
+            if "error" in device:
+                continue
+            writer.writerow({
+                "hostname": device["hostname"],
+                "interface_count": len(device["interfaces"]),
+                "ospf_count": len(device["ospf"]),
+            })
+
+
 if __name__ == "__main__":
     logging.basicConfig(filename="config_analyzer.log",level=logging.INFO,format="%(asctime)s %(levelname)s %(name)s %(message)s")
     logger.info("run started")
     data = build_data()
     with open("output.json", "w") as f:
         json.dump(data, f, indent=2)
+    export_csv(data,"inventory.csv")
     logger.info("run finished")
 
 

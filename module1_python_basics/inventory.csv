@@ -1,0 +1,4 @@
+hostname,interface_count,ospf_count
+R1,3,3
+R2,3,3
+R3,3,1

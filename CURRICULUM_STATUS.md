@@ -1,7 +1,7 @@
 # Curriculum Progress Tracker
 
-**Last Updated:** May 12, 2026
-**Overall Progress:** 0% (all modules incomplete)
+**Last Updated:** June 20, 2026
+**Overall Progress:** ~6% (Module 1 ~65% complete through Session 11; all other modules not started)
 **Pace:** 20-30 minutes per day, 4 days per week (~1.5-2 hours per week)
 **Estimated Completion:** 10-12 months from start
 
@@ -10,7 +10,7 @@
 ## Progress Overview
 
 ```
-Module 1:   ░░░░░░░░░░░░░░░░░░░░   0%  IN PROGRESS (materials created, learning not started)
+Module 1:   █████████████░░░░░░░  65%  IN PROGRESS (S11 done; sets/tuples, comprehensions, show-output, modules, CSV, README remain)
 Module 2:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
 Module 3:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
 Module 4:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
@@ -22,47 +22,75 @@ Module 8:   ░░░░░░░░░░░░░░░░░░░░   0%  N
 Module 9:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
 Module 10:  ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
 
-Total:      ░░░░░░░░░░░░░░░░░░░░   0%
+Total:      █░░░░░░░░░░░░░░░░░░░░  ~6%
 ```
 
 ---
 
 ## Module 1: Python Fundamentals (6-8 weeks)
 
-**Status:** INCOMPLETE - Materials exist, learning not yet done
-**GitHub Project:** Network Config Analyzer
+**Status:** IN PROGRESS (~65%) - 11 sessions complete; multiple concept gaps remain (see below)
+**GitHub Project:** Network Config Analyzer (`module1_python_basics/config_analyzer.py`)
 
-### What Exists
+### Sessions Completed (recall decks written per session)
 
-The learning materials (theory guide, exercises, sample configs, sample code) were generated previously. However, no independent learning or project building has been done yet.
+| Sessions | Topic | Recall Deck |
+|----------|-------|-------------|
+| S1-S3 | Variables, strings, file reading, refactor into functions | anki_session1_to_3.txt |
+| S4-S5 | Multi-file parsing with `os`, OSPF parsing with regex | anki_session4_to_5.txt |
+| S6-S7 | File I/O, `open()` modes, JSON output, guardrails | anki_session6_to_7.txt |
+| S8 | Control flow: `return` vs `continue`, recoverable vs fatal | anki_session8.txt |
+| S9 | Logging strategy (levels, handlers, formatters) | anki_session9.txt |
+| S10 | Automated testing with pytest (AAA, parametrize, fixtures) | anki_session10.txt |
+| S11 | OOP refactor into `GetConfig` class | anki_session11.txt |
 
-| Item | Exists | Learned/Built Independently |
-|------|--------|-----------------------------|
-| theory_guide.md | Yes | Not yet studied |
-| exercises.md | Yes | Not yet completed |
-| config_parser.py | Yes (sample) | Not yet built independently |
-| inventory_manager.py | Yes (sample) | Not yet built independently |
-| Sample configs | Yes | Available for use |
-| GitHub project (Config Analyzer) | No | Not yet started |
+### Learning-Objective Coverage (from theory_guide.md, the authoritative scope)
 
-### What Needs to Happen
+| Objective / Theory section | Status |
+|-----------|--------|
+| Data structures: **lists**, **dicts**, nested | Done (used throughout) |
+| Data structures: **tuples** | **Partial** — only incidental (`enumerate`, `parametrize`); no focused lesson |
+| Data structures: **sets** | **Not covered** — no usage, no recall deck |
+| **List/dict comprehensions** (§2.1, 2.2) | **Not covered** — explicit `.append()` loops only |
+| Regex on **config files** | Done (Session 4-5) |
+| Regex on **`show` command output** (§3.2-3.3) | **Not covered** — `sample_outputs/` never parsed; no `re.findall`/named groups |
+| File formats: text, JSON | Done |
+| File formats: **CSV** (§4.4) | **Not covered** — only JSON export exists |
+| Functions: basics | Done (S1-3) |
+| Functions: **defaults, `*args`/`**kwargs`, multi-return** (§5) | **Not covered** |
+| Classes: basics (`__init__`, methods) | Done (S11) |
+| Classes: **inheritance, `__str__`/`__repr__`** (§6) | **Not covered** |
+| Error handling (try/except, multi-exception) | Done (Session 8) |
+| Logging (basicConfig, levels, file handler) | Done (Session 9) |
+| Logging: **multi-handler / `RotatingFileHandler`** (§8.2) | Not covered (optional) |
+| Virtual env / dependency management (§1.2) | Done — uses an activated project venv |
+| **Organize code into modules** (§9) | **Not done** — single-file project |
+| Practice exercises (criterion: ≥5) | Partially via project (Ex 2, 9, 10); Ex 1/3/5 untouched |
 
-- [ ] Work through Python basics by building the Config Analyzer project from scratch
-- [ ] Learn variables, strings, lists, dicts by writing parsing functions
-- [ ] Learn file I/O by reading config files and writing reports
-- [ ] Learn regex by parsing CLI output
-- [ ] Learn functions and classes by organizing the project
-- [ ] Learn error handling by making the tool robust
-- [ ] Write a proper README for the project
-- [ ] Push the completed project to GitHub
+### Completion Criteria — Live Status
 
-### Completion Criteria
+| # | Criterion | Status |
+|---|-----------|--------|
+| 1 | Built config analyzer from scratch (not copied sample) | Done |
+| 2 | Can explain every line of own code | Done |
+| 3 | Extracts hostname, interfaces, IPs, routing protocols | Done (`get_hostname`, `get_interfaces`, `get_ospf`) |
+| 4 | Exports to 2+ formats (JSON + one other) | **Pending** — only JSON (`output.json`) so far |
+| 5 | Handles errors gracefully (missing files, bad input) | Done (`try/except`, `ipadd` validation) |
+| 6 | Has logging | Done (Session 9) |
+| 7 | On GitHub with a clear **project** README | **Pending** — current README is the module template, not the project's own |
+| 8 | 15+ commits showing building process | Done (~15 Module-1 commits) |
+| 9 | Can answer "what does this line do?" for any line | Done |
 
-You are done with Module 1 when:
-1. You have independently built a config analyzer tool (not copied the sample)
-2. You can explain every line of your code
-3. Your project is on GitHub with a clear README
-4. You have made at least 15-20 commits showing your progress
+### What Remains (~6 sessions)
+
+Sequential plan; **[T1]** = required, **[T2]** = strongly recommended (in theory guide), **[T3]** = optional.
+
+- [ ] **Session 12 — CSV export [T1]:** write parsed data to CSV with the `csv` module (closes file-formats objective + criterion #4); optional `argparse` CLI
+- [ ] **Session 13 — Sets & tuples [T1]:** practical network use — set operations (difference/intersection) to compare which interfaces/OSPF networks two devices share; tuples as immutable records + returning multiple values from functions
+- [ ] **Session 14 — Parse `show` output + comprehensions [T2]:** parse `sample_outputs/` (e.g. `show ip interface brief`) with `re.findall`/named groups; refactor a loop or two into list/dict comprehensions
+- [ ] **Session 15 — Organize into modules [T1]:** split `config_analyzer.py` into a small package (parser / I-O-reporting / main entry) with proper `import`s and `if __name__ == "__main__"`; fold in class depth (inheritance, `__str__`) [T2] where natural
+- [ ] **Session 16 — Polish, README & push [T1]:** remove dead commented-out code, write a real project README, push final state to GitHub (wrap-up/recall)
+- [ ] **Optional / deferred [T3]:** advanced logging (console+file handlers, `RotatingFileHandler`), custom exceptions / `finally`, decorators (Ex 8C), PEP 8 + docstrings polish; a "Challenge Yourself" stretch goal (IPv6, SQLite, topology) — not required for completion
 
 ---
 
