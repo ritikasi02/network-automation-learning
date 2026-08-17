@@ -49,7 +49,7 @@ class ConfigAnalyzer:
                             ip = parts[2]
                             mask = parts[3]
                             interface.append({"name": line.strip(),"ip": ip, "mask":mask})
-                            break
+                            break #breaks innermost j loop, outer i keeps running
                     if self.data[j].strip() == '!':
                         break
         return interface
@@ -133,11 +133,27 @@ def export_csv(data,filepath):
                 "ospf_count": len(device["ospf"]),
             })
 
+def ospf_networks(device):
+    result = set()
+    for entry in device["ospf"]:
+        result.add((entry["network"], entry["wildcard"], entry["area"]))
+    return result
+
+def compare_ospf(dev_a, dev_b):
+    a = ospf_networks(dev_a)
+    b = ospf_networks(dev_b)
+    return {
+        "only in a": list(a-b),
+        "only in b:": list(b-a),
+        "in both": list(a & b),
+    }
 
 if __name__ == "__main__":
     logging.basicConfig(filename="config_analyzer.log",level=logging.INFO,format="%(asctime)s %(levelname)s %(name)s %(message)s")
     logger.info("run started")
     data = build_data()
+    result = compare_ospf(data[0], data[1])
+    print(json.dumps(result, indent=2))
     with open("output.json", "w") as f:
         json.dump(data, f, indent=2)
     export_csv(data,"inventory.csv")
