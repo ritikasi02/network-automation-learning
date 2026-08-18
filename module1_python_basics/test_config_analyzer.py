@@ -1,6 +1,7 @@
 
 import pytest
-from config_analyzer import ConfigAnalyzer, read_confg
+from classparser import ConfigAnalyzer
+from config_analyzer import read_confg
 
 
 @pytest.mark.parametrize("lines, expected", [
