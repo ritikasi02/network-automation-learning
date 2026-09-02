@@ -1,0 +1,6 @@
+# Module 2 — SSH Automation dependencies
+# Install into the project venv:  pip install -r requirements.txt
+
+netmiko>=4.3.0      # network-device SSH automation (sits on top of paramiko)
+PyYAML>=6.0.1       # read the device inventory (devices.yaml)
+python-dotenv>=1.0.0  # optional: load credentials from a gitignored .env file

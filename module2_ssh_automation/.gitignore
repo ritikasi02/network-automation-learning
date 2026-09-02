@@ -1,0 +1,13 @@
+# Real inventory (may contain device IPs) — keep only devices.example.yaml in git
+devices.yaml
+
+# Secrets — never commit
+.env
+*.env
+
+# Backups may contain sensitive config data (SNMP strings, password hashes)
+backups/*
+!backups/.gitkeep
+
+# Logs
+*.log

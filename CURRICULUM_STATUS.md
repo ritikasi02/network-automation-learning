@@ -1,7 +1,7 @@
 # Curriculum Progress Tracker
 
-**Last Updated:** June 20, 2026
-**Overall Progress:** ~6% (Module 1 ~65% complete through Session 11; all other modules not started)
+**Last Updated:** September 2, 2026
+**Overall Progress:** ~12% (Module 1 COMPLETE through Session 14 + checkpoint; Module 2 in progress)
 **Pace:** 20-30 minutes per day, 4 days per week (~1.5-2 hours per week)
 **Estimated Completion:** 10-12 months from start
 
@@ -10,26 +10,27 @@
 ## Progress Overview
 
 ```
-Module 1:   █████████████░░░░░░░  65%  IN PROGRESS (S11 done; sets/tuples, comprehensions, show-output, modules, CSV, README remain)
-Module 2:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
+Module 1:   ████████████████████ 100%  COMPLETE (S1-S14 + checkpoint; recall decks per session)
+Module 2:   ███░░░░░░░░░░░░░░░░░  ~15%  IN PROGRESS (scaffolding built; Session 1 starting)
 Module 3:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
 Module 4:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
-Module 4.5: ░░░░░░░░░░░░░░░░░░░░   0%  Not Started (NEW - AWS Cloud Automation)
+Module 4.5: ░░░░░░░░░░░░░░░░░░░░   0%  Not Started (AWS Cloud Automation)
 Module 5:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
-Module 6:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
+Module 6:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started (Ansible)
+Module 6.5: ░░░░░░░░░░░░░░░░░░░░   0%  Not Started (Terraform IaC - AUTOCOR 1.2) [ADDED Sep 2026]
 Module 7:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
 Module 8:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
 Module 9:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
 Module 10:  ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
 
-Total:      █░░░░░░░░░░░░░░░░░░░░  ~6%
+Total:      ██░░░░░░░░░░░░░░░░░░  ~12%
 ```
 
 ---
 
 ## Module 1: Python Fundamentals (6-8 weeks)
 
-**Status:** IN PROGRESS (~65%) - 11 sessions complete; multiple concept gaps remain (see below)
+**Status:** COMPLETE (100%) - Sessions 1-14 + Module 1 checkpoint done; recall decks written per session. Verified weak spots carried into daily practice: reference-vs-value/aliasing, OOP mental model (self is the instance), container element model & len(). See practice_log.md + /practice-python command.
 **GitHub Project:** Network Config Analyzer (`module1_python_basics/config_analyzer.py`)
 
 ### Sessions Completed (recall decks written per session)
@@ -43,6 +44,7 @@ Total:      █░░░░░░░░░░░░░░░░░░░░  ~6%
 | S9 | Logging strategy (levels, handlers, formatters) | anki_session9.txt |
 | S10 | Automated testing with pytest (AAA, parametrize, fixtures) | anki_session10.txt |
 | S11 | OOP refactor into `GetConfig` class | anki_session11.txt |
+| S12 | Serialization (`to_dict`) + CSV export (`csv.DictWriter`); scope, flattening | anki_session12.txt |
 
 ### Learning-Objective Coverage (from theory_guide.md, the authoritative scope)
 
@@ -55,7 +57,7 @@ Total:      █░░░░░░░░░░░░░░░░░░░░  ~6%
 | Regex on **config files** | Done (Session 4-5) |
 | Regex on **`show` command output** (§3.2-3.3) | **Not covered** — `sample_outputs/` never parsed; no `re.findall`/named groups |
 | File formats: text, JSON | Done |
-| File formats: **CSV** (§4.4) | **Not covered** — only JSON export exists |
+| File formats: **CSV** (§4.4) | Done (Session 12) — `export_csv` flattens each device to one row via `csv.DictWriter` |
 | Functions: basics | Done (S1-3) |
 | Functions: **defaults, `*args`/`**kwargs`, multi-return** (§5) | **Not covered** |
 | Classes: basics (`__init__`, methods) | Done (S11) |
@@ -74,18 +76,18 @@ Total:      █░░░░░░░░░░░░░░░░░░░░  ~6%
 | 1 | Built config analyzer from scratch (not copied sample) | Done |
 | 2 | Can explain every line of own code | Done |
 | 3 | Extracts hostname, interfaces, IPs, routing protocols | Done (`get_hostname`, `get_interfaces`, `get_ospf`) |
-| 4 | Exports to 2+ formats (JSON + one other) | **Pending** — only JSON (`output.json`) so far |
+| 4 | Exports to 2+ formats (JSON + one other) | Done — JSON (`output.json`) + CSV (`inventory.csv` via `export_csv`) |
 | 5 | Handles errors gracefully (missing files, bad input) | Done (`try/except`, `ipadd` validation) |
 | 6 | Has logging | Done (Session 9) |
 | 7 | On GitHub with a clear **project** README | **Pending** — current README is the module template, not the project's own |
 | 8 | 15+ commits showing building process | Done (~15 Module-1 commits) |
 | 9 | Can answer "what does this line do?" for any line | Done |
 
-### What Remains (~6 sessions)
+### What Remains (~4 sessions)
 
 Sequential plan; **[T1]** = required, **[T2]** = strongly recommended (in theory guide), **[T3]** = optional.
 
-- [ ] **Session 12 — CSV export [T1]:** write parsed data to CSV with the `csv` module (closes file-formats objective + criterion #4); optional `argparse` CLI
+- [x] **Session 12 — CSV export [T1]:** wrote parsed data to CSV with the `csv` module via `export_csv`/`csv.DictWriter` (closes file-formats objective + criterion #4)
 - [ ] **Session 13 — Sets & tuples [T1]:** practical network use — set operations (difference/intersection) to compare which interfaces/OSPF networks two devices share; tuples as immutable records + returning multiple values from functions
 - [ ] **Session 14 — Parse `show` output + comprehensions [T2]:** parse `sample_outputs/` (e.g. `show ip interface brief`) with `re.findall`/named groups; refactor a loop or two into list/dict comprehensions
 - [ ] **Session 15 — Organize into modules [T1]:** split `config_analyzer.py` into a small package (parser / I-O-reporting / main entry) with proper `import`s and `if __name__ == "__main__"`; fold in class depth (inheritance, `__str__`) [T2] where natural
@@ -96,7 +98,7 @@ Sequential plan; **[T1]** = required, **[T2]** = strongly recommended (in theory
 
 ## Module 2: SSH Automation (1 week)
 
-**Status:** Not Started
+**Status:** IN PROGRESS - module scaffolding built (README, theory_guide, exercises, requirements, devices.example.yaml, .gitignore, backups/); Session 1 starting (connect to one CML device via Netmiko).
 **GitHub Project:** Device Backup Script
 
 ### Deliverables
@@ -221,6 +223,26 @@ Sequential plan; **[T1]** = required, **[T2]** = strongly recommended (in theory
 1. Working Ansible collection tested against CML
 2. Organized with roles, templates, group_vars
 3. On GitHub with README showing project structure
+
+---
+
+## Module 6.5: Terraform — Infrastructure as Code (2-3 weeks)  [ADDED per learner request, Sep 2026]
+
+**Status:** Not Started
+**Why it's here:** Terraform is core to modern network/cloud automation and is an explicit AUTOCOR v2.0 topic (Domain 1.2 — construct automation with Terraform; 1.5 — select IaC vs low-code vs custom app). Learn it right after Ansible (Module 6) to contrast **declarative, state-driven IaC (Terraform)** with **procedural, agentless config management (Ansible)**.
+**REMINDER FOR THE ANSIBLE MODULE:** when we reach Module 6 (Ansible), explicitly plan Terraform as the follow-on (6.5) and frame Ansible-vs-Terraform trade-offs throughout.
+**GitHub Project:** Terraform IaC for network/cloud resources
+
+### Deliverables
+- [ ] Terraform core: providers, resources, **state**, plan/apply/destroy, variables, outputs
+- [ ] HCL syntax; declarative vs imperative model; **idempotency** and the state file
+- [ ] Provider examples: cloud (AWS and/or AzureRM per blueprint M6.5) and/or a network device provider
+- [ ] Compare Terraform (declarative, state-driven) vs Ansible (procedural, push-based)
+- [ ] Push to GitHub with README
+
+### Completion Criteria
+1. Working Terraform config that provisions resources via plan/apply
+2. README explaining state, idempotency, and Terraform-vs-Ansible trade-offs
 
 ---
 

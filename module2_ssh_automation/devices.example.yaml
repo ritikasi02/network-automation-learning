@@ -1,0 +1,18 @@
+# Device inventory TEMPLATE — copy to devices.yaml and fill in your CML lab details.
+#
+#   cp devices.example.yaml devices.yaml
+#
+# devices.yaml is gitignored (it holds real IPs). NEVER put usernames/passwords here —
+# credentials come from environment variables (NET_USER / NET_PASS) at runtime.
+#
+# 'device_type' values are Netmiko platform identifiers, e.g.:
+#   cisco_ios, cisco_xe, cisco_nxos, cisco_xr, arista_eos, juniper_junos
+
+devices:
+  - hostname: R1
+    host: 10.10.20.48        # <-- replace with your CML device's management IP
+    device_type: cisco_ios
+
+  - hostname: R2
+    host: 10.10.20.49        # <-- replace with your CML device's management IP
+    device_type: cisco_ios
