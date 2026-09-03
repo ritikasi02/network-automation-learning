@@ -97,8 +97,8 @@ interface GigabitEthernet0/3
 !
 router ospf 1
  network 1.1.1.1 0.0.0.0 area 0
- network 10.1.1.0 0.0.0.255 area 0
- network 192.168.1.0 0.0.0.255 area 0
+ network 10.1.1.0 0.0.0.255 area 1
+ network 192.168.1.0 0.0.0.255 area 1
 !
 ip forward-protocol nd
 !

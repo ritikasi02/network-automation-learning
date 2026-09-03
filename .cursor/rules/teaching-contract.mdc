@@ -23,6 +23,21 @@ Define every term on first use and spell out the smallest mechanical steps. Hono
      header, then **tab-separated** `Front<TAB>Back` rows (one card per line, no newlines inside a card).
      Cards are reasoning/scenario style ("why", "what breaks", "how do you decide"), grounded in what the
      learner actually did that session — never rote trivia.
+   - **Cards MUST be fully self-contained (the "3-months-later" test).** Assume the learner reviews each
+     card in isolation with **zero memory** of the session. The *card itself* must carry every piece of
+     context needed to answer it — never assume they remember "the error," "that bug," "the function we
+     wrote," or "the file." Concretely:
+       - **Set the scene on the FRONT.** When a card references a specific bug/behaviour, restate the
+         relevant code or scenario inline (e.g. `SCENARIO (file.py, func_name): <the actual code/structure
+         that was written> ... <the symptom that occurred>`), then ask the question. The learner should
+         never have to think "wait, *which* error?".
+       - **Quote the real artifacts**: the file name, the function name, the offending line(s), the exact
+         error message/symptom, and what the learner was trying to do. Reproduce code with spaces only —
+         **never put a literal TAB inside a card** (TAB is the column separator).
+       - **The BACK is also standalone**: re-anchor the answer in that same context and end with the
+         transferable principle, so the card teaches even if read cold.
+       - Prefer a slightly longer, vivid card over a terse one that depends on outside memory. A card that
+         can only be understood by someone who remembers the session is a broken card — rewrite it.
    - **The learner** does the retrieval practice (studying the deck) and writes the blog post.
 
 ## Roles (non-negotiable)

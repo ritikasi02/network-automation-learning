@@ -1,7 +1,7 @@
 # Curriculum Progress Tracker
 
-**Last Updated:** September 2, 2026
-**Overall Progress:** ~12% (Module 1 COMPLETE through Session 14 + checkpoint; Module 2 in progress)
+**Last Updated:** September 3, 2026
+**Overall Progress:** ~18% (Module 1 COMPLETE; Module 2 COMPLETE — lean Netmiko backup against DevNet sandbox)
 **Pace:** 20-30 minutes per day, 4 days per week (~1.5-2 hours per week)
 **Estimated Completion:** 10-12 months from start
 
@@ -11,7 +11,7 @@
 
 ```
 Module 1:   ████████████████████ 100%  COMPLETE (S1-S14 + checkpoint; recall decks per session)
-Module 2:   ███░░░░░░░░░░░░░░░░░  ~15%  IN PROGRESS (scaffolding built; Session 1 starting)
+Module 2:   ████████████████████ 100%  COMPLETE (lean: connect, inventory loop, timestamped backup, env secrets, per-device try/except)
 Module 3:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
 Module 4:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
 Module 4.5: ░░░░░░░░░░░░░░░░░░░░   0%  Not Started (AWS Cloud Automation)
@@ -23,7 +23,7 @@ Module 8:   ░░░░░░░░░░░░░░░░░░░░   0%  N
 Module 9:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
 Module 10:  ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
 
-Total:      ██░░░░░░░░░░░░░░░░░░  ~12%
+Total:      ███░░░░░░░░░░░░░░░░░  ~18%
 ```
 
 ---
@@ -98,7 +98,7 @@ Sequential plan; **[T1]** = required, **[T2]** = strongly recommended (in theory
 
 ## Module 2: SSH Automation (1 week)
 
-**Status:** IN PROGRESS - module scaffolding built (README, theory_guide, exercises, requirements, devices.example.yaml, .gitignore, backups/); Session 1 starting (connect to one CML device via Netmiko).
+**Status:** COMPLETE (lean track, Sep 2026) — Netmiko backup against Cisco DevNet Catalyst 9000 Always-On sandbox (`devnetsandboxiosxec9k.cisco.com`). Inventory-driven loop (`devices.yaml` + `yaml.safe_load`), credentials from env vars (`NET_USER`/`NET_PASS`), timestamped files in `backups/`, per-device `NetmikoTimeoutException` / `NetmikoAuthenticationException`. Dummy unreachable host confirmed timeout path without aborting the good device. Recall deck: `anki_session1.txt`.
 **GitHub Project:** Device Backup Script
 
 ### Deliverables
