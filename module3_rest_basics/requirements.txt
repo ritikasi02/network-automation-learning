@@ -1,0 +1,6 @@
+# Module 3 — REST API Basics
+# Install into the project venv:  pip install -r requirements.txt
+
+requests>=2.31.0      # HTTP client (GET/POST, JSON, Sessions)
+python-dotenv>=1.0.0  # optional: load CML_* from a gitignored .env
+# Flask is added in week 3 — do not install it until that session

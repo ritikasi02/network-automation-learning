@@ -1,7 +1,7 @@
 # Curriculum Progress Tracker
 
-**Last Updated:** September 3, 2026
-**Overall Progress:** ~18% (Module 1 COMPLETE; Module 2 COMPLETE — lean Netmiko backup against DevNet sandbox)
+**Last Updated:** October 3, 2026
+**Overall Progress:** ~24% (Module 1 COMPLETE; Module 2 COMPLETE; Module 3 S1–S5 done — HTTP, JSON, token auth, CmlClient, per-lab HTTP errors)
 **Pace:** 20-30 minutes per day, 4 days per week (~1.5-2 hours per week)
 **Estimated Completion:** 10-12 months from start
 
@@ -12,7 +12,7 @@
 ```
 Module 1:   ████████████████████ 100%  COMPLETE (S1-S14 + checkpoint; recall decks per session)
 Module 2:   ████████████████████ 100%  COMPLETE (lean: connect, inventory loop, timestamped backup, env secrets, per-device try/except)
-Module 3:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
+Module 3:   ██████████░░░░░░░░░░  50%  In Progress (S1–S5 done: client plus per-lab 400/401/404 handling)
 Module 4:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
 Module 4.5: ░░░░░░░░░░░░░░░░░░░░   0%  Not Started (AWS Cloud Automation)
 Module 5:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
@@ -23,7 +23,7 @@ Module 8:   ░░░░░░░░░░░░░░░░░░░░   0%  N
 Module 9:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
 Module 10:  ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
 
-Total:      ███░░░░░░░░░░░░░░░░░  ~18%
+Total:      ████░░░░░░░░░░░░░░░░  ~24%
 ```
 
 ---
@@ -116,8 +116,9 @@ Sequential plan; **[T1]** = required, **[T2]** = strongly recommended (in theory
 
 ## Module 3: REST API Basics (3-4 weeks)
 
-**Status:** Not Started
+**Status:** In Progress (Session 1 kickoff, Sep 7 2026) — scaffolding in `module3_rest_basics/`. Public no-auth API first (`jsonplaceholder`); CML / DevNet sandbox from Session 3.
 **GitHub Project:** Network API Dashboard
+**AUTOCOR:** 1.6 (REST: auth, pagination, rate limits, errors, persistent auth); 2.2 (CML REST); 3.3; 3.6
 
 ### Deliverables
 
@@ -132,6 +133,19 @@ Sequential plan; **[T1]** = required, **[T2]** = strongly recommended (in theory
 1. Working API client that authenticates and retrieves data from CML
 2. Simple web dashboard displaying lab topology
 3. On GitHub with README including API reference table
+
+### Sessions
+
+| Session | Topic | Status |
+|---------|-------|--------|
+| S1 | HTTP mental model; first `requests.get`; status + JSON walk | Complete (recall: `anki_session1.txt`) |
+| S2 | Trim API JSON to a report; filter local `labs.json` | Complete (recall: `anki_session2.txt`) |
+| S3 | Authenticate to CML (token); Bearer header; GET labs; TLS self-signed | Complete (recall: `anki_session3.txt`) |
+| S4 | Reusable `CmlClient` (session, login, get_labs, get_lab) | Complete (recall: `anki_session4.txt`) |
+| S5 | Per-lab HTTP errors: 400/404 skip, 401 login-and-retry once | Complete (recall: `anki_session5.txt`) |
+| S6 | Timeouts, 429/backoff, nodes; pagination if the API pages | Not started |
+| S7–S8 | Flask dashboard | Not started |
+| S9+ | Polish, README, API table, push | Not started |
 
 ---
 

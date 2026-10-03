@@ -1,0 +1,33 @@
+{
+  "lab_id": "lab-aa11",
+  "title": "Campus Core",
+  "nodes": [
+    {
+      "id": "n1",
+      "label": "CORE-1",
+      "node_definition": "csr1000v",
+      "state": "BOOTED",
+      "interfaces": [
+        {"name": "GigabitEthernet1", "ip": "10.10.20.1", "status": "up"},
+        {"name": "GigabitEthernet2", "ip": "10.0.0.1", "status": "up"}
+      ]
+    },
+    {
+      "id": "n2",
+      "label": "CORE-2",
+      "node_definition": "csr1000v",
+      "state": "BOOTED",
+      "interfaces": [
+        {"name": "GigabitEthernet1", "ip": "10.10.20.2", "status": "up"},
+        {"name": "GigabitEthernet2", "ip": "10.0.0.2", "status": "down"}
+      ]
+    },
+    {
+      "id": "n3",
+      "label": "ACCESS-1",
+      "node_definition": "cat8000v",
+      "state": "DEFINED_ON_CORE",
+      "interfaces": []
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "labs": [
+    {
+      "id": "lab-aa11",
+      "title": "Campus Core",
+      "state": "STARTED",
+      "node_count": 4
+    },
+    {
+      "id": "lab-bb22",
+      "title": "WAN Edge",
+      "state": "STOPPED",
+      "node_count": 3
+    },
+    {
+      "id": "lab-cc33",
+      "title": "SD-Access Fabric",
+      "state": "STARTED",
+      "node_count": 8
+    }
+  ]
+}
