@@ -1,5 +1,6 @@
 import os
 import re
+import time
 import requests
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -40,7 +41,17 @@ class CmlClient:
         response = self.session.get(self._url(f"labs/{lab_id}"),timeout =10)
         response.raise_for_status()
         return response.json()
-        
+
+    def get_nodes(self, lab_id):
+        response = self.session.get(self._url(f"labs/{lab_id}/nodes"), timeout=10)
+        response.raise_for_status()
+        return response.json()
+    
+    def get_node(self, lab_id, node_id):
+        response = self.session.get(self._url(f"labs/{lab_id}/nodes/{node_id}"), timeout=10)
+        response.raise_for_status()
+        return response.json() #The method does not print. It converts the HTTP body into a list or a dict and hands that object back. 
+
 
 if __name__ == "__main__":
     base = os.environ["CML_URL"]
@@ -51,10 +62,15 @@ if __name__ == "__main__":
     client.login()
 
     labs = client.get_labs()
+
     for lab_id in labs:
         try:
             detail = client.get_lab(lab_id) #lab_id is the string you send. detail is the body CML sends back. you send 12345, CML responds with {"title": "HQ", "state":"up"}
             print(detail["lab_title"], detail["state"])
+            nodes = client.get_nodes(lab_id)
+            for node_id in nodes:
+                node = client.get_node(lab_id, node_id)
+                print("    ", node["label"], node["state"])
         except requests.exceptions.HTTPError as error: #storing error code as 'error'
             status = error.response.status_code
             if status in (400,404):
@@ -66,9 +82,21 @@ if __name__ == "__main__":
                     print(detail["lab_title"], detail["state"])
                 except requests.exceptions.HTTPError as error:
                     print("not authorized still", error.response.status_code)
-            
+            elif status == 429:
+                retry = error.response.headers.get("Retry-After")
+                wait = int(retry) if retry else 2
+                time.sleep(wait)
+                try:
+                    detail = client.get_lab(lab_id)
+                    print(detail["lab_title"], detail["state"])
+                except requests.exceptions.HTTPError as error:
+                    print("still not allowed", error.response.status_code)
+
             else:
                 print("request failed", status) 
+        except requests.exceptions.Timeout:
+            print("timeout, skipped", lab_id)
+
 
 
 #you send:  GET /api/v0/labs/this-lab-does-not-exist

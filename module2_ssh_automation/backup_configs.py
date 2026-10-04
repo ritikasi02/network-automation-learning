@@ -5,7 +5,6 @@ import yaml
 from netmiko import ConnectHandler, NetmikoTimeoutException, NetmikoAuthenticationException
 
 
-
 username = os.environ["NET_USER"]
 password = os.environ["NET_PASS"]
 

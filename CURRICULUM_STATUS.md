@@ -143,7 +143,7 @@ Sequential plan; **[T1]** = required, **[T2]** = strongly recommended (in theory
 | S3 | Authenticate to CML (token); Bearer header; GET labs; TLS self-signed | Complete (recall: `anki_session3.txt`) |
 | S4 | Reusable `CmlClient` (session, login, get_labs, get_lab) | Complete (recall: `anki_session4.txt`) |
 | S5 | Per-lab HTTP errors: 400/404 skip, 401 login-and-retry once | Complete (recall: `anki_session5.txt`) |
-| S6 | Timeouts, 429/backoff, nodes; pagination if the API pages | Not started |
+| S6 | Timeouts + 429 done (recall: `anki_session6.txt`); nodes next | In progress |
 | S7–S8 | Flask dashboard | Not started |
 | S9+ | Polish, README, API table, push | Not started |
 
