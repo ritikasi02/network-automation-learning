@@ -30,3 +30,4 @@ line per session at the end of the Log table.
 ## Log
 | Date | Topic | Difficulty | Result | Remember this |
 |------|-------|-----------|--------|---------------|
+| 2026-10-08 | list comprehensions | easy | pass | A comprehension is a *declarative expression* that builds a list — no `newlist=[]`, no `.append()`, no `return` (those are the imperative loop's job). Shape: `[expr for item in source if cond]`. Pull dict values with `interface["key"]`; string literals need quotes (`"up"`, not `up`). Use a comprehension for pure one-list transforms; use a full loop when the body does more than one thing / has side effects. |
