@@ -1,7 +1,7 @@
 # Curriculum Progress Tracker
 
-**Last Updated:** October 3, 2026
-**Overall Progress:** ~24% (Module 1 COMPLETE; Module 2 COMPLETE; Module 3 S1–S5 done — HTTP, JSON, token auth, CmlClient, per-lab HTTP errors)
+**Last Updated:** October 5, 2026
+**Overall Progress:** ~26% (Modules 1–2 complete; Module 3 REST client done, Flask deferred; Module 3.5 AWS taster started)
 **Pace:** 20-30 minutes per day, 4 days per week (~1.5-2 hours per week)
 **Estimated Completion:** 10-12 months from start
 
@@ -12,7 +12,8 @@
 ```
 Module 1:   ████████████████████ 100%  COMPLETE (S1-S14 + checkpoint; recall decks per session)
 Module 2:   ████████████████████ 100%  COMPLETE (lean: connect, inventory loop, timestamped backup, env secrets, per-device try/except)
-Module 3:   ██████████░░░░░░░░░░  50%  In Progress (S1–S5 done: client plus per-lab 400/401/404 handling)
+Module 3:   ████████████████░░░░  80%  REST client done (Flask deferred; pagination covered as a pattern)
+Module 3.5: ██░░░░░░░░░░░░░░░░░░  10%  In Progress (S1 kickoff — account, region, bill)
 Module 4:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
 Module 4.5: ░░░░░░░░░░░░░░░░░░░░   0%  Not Started (AWS Cloud Automation)
 Module 5:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
@@ -23,7 +24,7 @@ Module 8:   ░░░░░░░░░░░░░░░░░░░░   0%  N
 Module 9:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
 Module 10:  ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
 
-Total:      ████░░░░░░░░░░░░░░░░  ~24%
+Total:      █████░░░░░░░░░░░░░░░  ~26%
 ```
 
 ---
@@ -143,9 +144,26 @@ Sequential plan; **[T1]** = required, **[T2]** = strongly recommended (in theory
 | S3 | Authenticate to CML (token); Bearer header; GET labs; TLS self-signed | Complete (recall: `anki_session3.txt`) |
 | S4 | Reusable `CmlClient` (session, login, get_labs, get_lab) | Complete (recall: `anki_session4.txt`) |
 | S5 | Per-lab HTTP errors: 400/404 skip, 401 login-and-retry once | Complete (recall: `anki_session5.txt`) |
-| S6 | Timeouts + 429 done (recall: `anki_session6.txt`); nodes next | In progress |
-| S7–S8 | Flask dashboard | Not started |
+| S6 | Timeouts, 429, nested lab/node walk; pagination learned as a pattern (CML does not page) | Complete (recall: `anki_session6.txt`; theory_guide §9.1) |
+| S7–S8 | Flask dashboard | Deferred — not required before controller APIs, AWS, NETCONF, Terraform |
 | S9+ | Polish, README, API table, push | Not started |
+
+---
+
+## Module 3.5: AWS Taster (2 weeks)
+
+**Status:** In Progress (S1–S4 done; private bucket + a Lambda whose Function URL reads ?name= and returns 200/400, Oct 14 2026). Notes in `module3_5_aws_taster/`.
+**Project:** Hello-AWS — one HTTP Lambda, one CloudFormation S3 bucket.
+**AUTOCOR:** patterns only (IaC, API/CLI, least privilege). The exam does not require AWS.
+
+| Session | Topic | Status |
+|---------|-------|--------|
+| S1 | Account, region, AZ, budget alarm | Done (free plan, Sydney, $10 budget) |
+| S2 | Identity and CLI (`aws login`, profile hello-aws) | Done (no long-lived access keys) |
+| S3 console | Private bucket, one object, stranger gets AccessDenied | Done |
+| S3–S4 | Lambda in the console: Test, event shape, Function URL, queryStringParameters | Done (200 on ?name=, 400 without) |
+| S5–S6 | CloudFormation S3 bucket, deploy / update / delete | Not started |
+| S7–S8 | Break and fix, README | Not started |
 
 ---
 

@@ -1,0 +1,10 @@
+# AWS credentials and local CLI state — never commit
+.aws/
+credentials
+*.pem
+
+# Packaged Lambda zip files are build output
+*.zip
+
+# CloudFormation packaged templates
+packaged.yaml
