@@ -38,6 +38,30 @@ Define every term on first use and spell out the smallest mechanical steps. Hono
          transferable principle, so the card teaches even if read cold.
        - Prefer a slightly longer, vivid card over a terse one that depends on outside memory. A card that
          can only be understood by someone who remembers the session is a broken card — rewrite it.
+   - **How much depth each BACK carries (the standard going forward).** Every BACK must fully *teach*,
+     not just state the answer. A terse correct answer is not enough — the card has to make the concept
+     click for someone reading it cold in 3 months. Each BACK should layer, in roughly this order:
+       1. **The direct answer** in plain language — state what happens and the correct pattern up front.
+       2. **The mental model / supporting logic** — the deeper "why it behaves this way," named and
+          explained (the generalizable idea, not just this one line of code).
+       3. **A worked code example with inline comments** showing the *observed* result, so the behaviour
+          is demonstrated, not just asserted.
+       4. **The why / why-not** — why the wrong version fails, why the right version works, and when the
+          distinction matters elsewhere.
+     Reference example of the target depth (a card about why `x = data.append(item)` makes `x` be `None`):
+       - FRONT: `You wrote "x = data.append(item)" and x became None. Why?`
+       - BACK (same richness expected every time): ".append() mutates the list in place and returns None —
+         it does not return the modified list, so assigning its result captures None. The correct pattern
+         is just 'data.append(item)' on its own line; the list already holds the change. MENTAL MODEL — a
+         method call does TWO independent jobs: (1) the side effect — what it DOES to the world (append's
+         side effect is 'add the item to the list in place', so data genuinely changes); (2) the return
+         value — what the expression HANDS BACK (append's return value is None, always). You mixed up the
+         two jobs. Worked example:  data = [1, 2]  /  x = data.append(3)  /  print(data) -> [1, 2, 3]  (the
+         list WAS modified, job #1 worked)  /  print(x) -> None  (append returned None, job #2). Rule of
+         thumb: in Python, in-place mutators (append, sort, extend, update, add) return None by design —
+         never assign their result; call them on their own line."
+     Match this level of code-plus-explanation-plus-why depth on every reasoning card, scaled to the
+     concept. (Reproduce code with spaces only; never put a literal TAB inside a card.)
    - **The learner** does the retrieval practice (studying the deck) and writes the blog post.
 
 ## Roles (non-negotiable)
