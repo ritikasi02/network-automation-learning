@@ -1,0 +1,16 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: One private S3 bucket for the Hello-AWS taster
+
+Resources:
+  ReportsBucket: #logical ID, you could name anything 
+    Type: AWS::S3::Bucket
+    Properties: 
+      BucketName: ritika-s3bucket-20262026
+      Tags:
+        - Key: aws-project
+          Value: hello-aws
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true #reject attempt to attach a *new* ACL that could make this resource public
+        IgnorePublicAcls: true #ignore any public ACL that exists
+        BlockPublicPolicy: true #reject any policy that would make this public
+        RestrictPublicBuckets: true #if public policy in place, restrict use of bucket to owner

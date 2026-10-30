@@ -13,7 +13,7 @@
 Module 1:   ████████████████████ 100%  COMPLETE (S1-S14 + checkpoint; recall decks per session)
 Module 2:   ████████████████████ 100%  COMPLETE (lean: connect, inventory loop, timestamped backup, env secrets, per-device try/except)
 Module 3:   ████████████████░░░░  80%  REST client done (Flask deferred; pagination covered as a pattern)
-Module 3.5: ██░░░░░░░░░░░░░░░░░░  10%  In Progress (S1 kickoff — account, region, bill)
+Module 3.5: ██████████████████░░  90%  Done hands-on (S1–S8; README writeup pending)
 Module 4:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
 Module 4.5: ░░░░░░░░░░░░░░░░░░░░   0%  Not Started (AWS Cloud Automation)
 Module 5:   ░░░░░░░░░░░░░░░░░░░░   0%  Not Started
@@ -152,7 +152,7 @@ Sequential plan; **[T1]** = required, **[T2]** = strongly recommended (in theory
 
 ## Module 3.5: AWS Taster (2 weeks)
 
-**Status:** In Progress (S1–S4 done; private bucket + a Lambda whose Function URL reads ?name= and returns 200/400, Oct 14 2026). Notes in `module3_5_aws_taster/`.
+**Status:** Done (S1–S8 complete; full CloudFormation IaC lifecycle + break/fix/teardown, Oct 30 2026). Notes in `module3_5_aws_taster/`. README writeup pending (learner).
 **Project:** Hello-AWS — one HTTP Lambda, one CloudFormation S3 bucket.
 **AUTOCOR:** patterns only (IaC, API/CLI, least privilege). The exam does not require AWS.
 
@@ -162,8 +162,8 @@ Sequential plan; **[T1]** = required, **[T2]** = strongly recommended (in theory
 | S2 | Identity and CLI (`aws login`, profile hello-aws) | Done (no long-lived access keys) |
 | S3 console | Private bucket, one object, stranger gets AccessDenied | Done |
 | S3–S4 | Lambda in the console: Test, event shape, Function URL, queryStringParameters | Done (200 on ?name=, 400 without) |
-| S5–S6 | CloudFormation S3 bucket, deploy / update / delete | Not started |
-| S7–S8 | Break and fix, README | Not started |
+| S5–S6 | CloudFormation S3 bucket, deploy / update / delete | Done (create, tag update in-place, idempotent no-op) |
+| S7–S8 | Break and fix (uppercase name -> rollback), recover, delete-stack teardown | Done (recall deck anki_session3.txt; README writeup pending) |
 
 ---
 
@@ -213,6 +213,35 @@ Sequential plan; **[T1]** = required, **[T2]** = strongly recommended (in theory
 1. Working Lambda that monitors network compliance, scheduled via EventBridge
 2. AI-powered troubleshooter using Amazon Bedrock, exposed to an LLM agent via an MCP server
 3. Both projects on GitHub with architecture diagrams in READMEs
+
+---
+
+## Module 4.6: AWS Networking & Compute (project-based) -- NEW
+
+**Status:** Not Started (added Oct 30 2026 at learner request — AWS interview fundamentals)
+**Why:** AUTOCOR is cloud-agnostic and does NOT test AWS infra, but the learner's goal is
+intermediate professional AWS proficiency + AWS interview readiness (Solutions Architect /
+cloud engineer). VPC, EC2, NAT, Transit Gateway, VPN, load balancing, security groups are
+core interview staples. Taught project-first (console, then IaC), right after 4.5.
+**GitHub Project:** AWS Multi-Tier VPC (custom network + web server + HA + cross-VPC connectivity)
+
+### Deliverables (each concept learned by building it)
+
+- [ ] Build a custom VPC from scratch — CIDR, public/private subnets, route tables, IGW, NAT GW
+- [ ] Launch an EC2 web server in it — AMIs, key pairs, user-data, Elastic IP, SSH
+- [ ] Lock down traffic — Security Groups (stateful) vs NACLs (stateless), least-privilege ports
+- [ ] Make it highly available — Multi-AZ, Application vs Network Load Balancer, target groups, health checks
+- [ ] Connect networks — VPC peering, Transit Gateway (hub-and-spoke), site-to-site VPN, multi-VPC
+- [ ] AWS-native firewalling + diagnosis — Network Firewall / WAF basics, VPC flow logs
+- [ ] Recreate the whole topology as IaC (Terraform or CloudFormation) and tear it down cleanly
+- [ ] Push to GitHub with an architecture diagram in the README
+
+### Completion Criteria
+
+1. A working custom VPC hosting an HA web tier behind a load balancer
+2. At least one cross-VPC connectivity pattern (peering or Transit Gateway) demonstrated
+3. Entire topology reproducible as code and destroyable with one command
+4. On GitHub with architecture diagram + interview-style Q&A notes
 
 ---
 
